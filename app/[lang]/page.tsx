@@ -6,6 +6,7 @@ import { getFacts } from "@/content/facts";
 import { getLang, localePath, routes, type LangParams } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
 import { faqLd } from "@/lib/structured-data";
+import { getPartners, joinNames } from "@/lib/db";
 import { Arrow } from "@/components/Arrow";
 import { CorridorDiagram } from "@/components/CorridorDiagram";
 import { Faq } from "@/components/Faq";
@@ -16,6 +17,8 @@ import { PartnerHouses } from "@/components/PartnerHouses";
 import { ProcessSteps } from "@/components/ProcessSteps";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
+
+export const revalidate = 300;
 
 export async function generateMetadata({ params }: LangParams): Promise<Metadata> {
   const lang = await getLang(params);
@@ -31,6 +34,12 @@ export default async function Home({ params }: LangParams) {
   const t = getDictionary(lang);
   const h = t.home;
   const [wineDuty] = getFacts(["wine-duty"]);
+  const partners = await getPartners(lang);
+  const houses = joinNames(partners.map((p) => p.name), lang);
+  // The FAQ answer about partner houses follows the live list; it is dropped if no house is published.
+  const faq = t.faq
+    .map((item) => (item.a.includes("{houses}") ? (houses ? { ...item, a: item.a.replace("{houses}", houses) } : null) : item))
+    .filter((item): item is (typeof t.faq)[number] => item !== null);
 
   return (
     <>
@@ -234,7 +243,7 @@ export default async function Home({ params }: LangParams) {
         <div className="container-oe">
           <SectionHeading eyebrow={h.partners.eyebrow} title={h.partners.title} body={h.partners.body} align="center" />
           <div className="mt-16">
-            <PartnerHouses houses={t.partnerHouses} />
+            <PartnerHouses houses={partners} />
           </div>
         </div>
       </section>
@@ -246,10 +255,10 @@ export default async function Home({ params }: LangParams) {
             <SectionHeading eyebrow={h.faq.eyebrow} title={h.faq.title} />
           </div>
           <div className="lg:col-span-8">
-            <Faq items={t.faq} />
+            <Faq items={faq} />
           </div>
         </div>
-        <JsonLd data={faqLd(t.faq)} />
+        <JsonLd data={faqLd(faq)} />
       </section>
 
       {/* ── Closing CTA ─────────────────────────────────────── */}

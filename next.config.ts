@@ -9,7 +9,18 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
-  images: { formats: ["image/avif", "image/webp"] },
+  // Admin forms upload images of up to 4 MB (Vercel caps request bodies at 4.5 MB).
+  experimental: { serverActions: { bodySizeLimit: "4.4mb" } },
+  images: {
+    formats: ["image/avif", "image/webp"],
+    remotePatterns: [{ protocol: "https", hostname: "ehfvqkkspwmcrrbwdxxz.supabase.co", pathname: "/storage/v1/object/public/**" }],
+  },
+  async redirects() {
+    return [
+      { source: "/insights", destination: "/news", permanent: true },
+      { source: "/fr/insights", destination: "/fr/news", permanent: true },
+    ];
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },

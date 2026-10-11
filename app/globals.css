@@ -504,3 +504,66 @@
     display: none;
   }
 }
+
+/* ── Long-form text (news articles, job descriptions) ──────────────── */
+@layer components {
+  .prose-oe {
+    font-size: 1.08rem;
+    line-height: 1.8;
+    color: var(--color-oe-ink);
+  }
+  .prose-oe > * + * {
+    margin-top: 1.25em;
+  }
+  .prose-oe h2 {
+    font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+    margin-top: 2.2em;
+  }
+  .prose-oe h3 {
+    font-size: 1.45rem;
+    margin-top: 1.8em;
+  }
+  .prose-oe ul,
+  .prose-oe ol {
+    padding-left: 1.25em;
+  }
+  .prose-oe ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  .prose-oe ul li {
+    position: relative;
+    padding-left: 1.6em;
+  }
+  .prose-oe ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.9em;
+    width: 0.75em;
+    height: 1px;
+    background: var(--color-oe-gold);
+  }
+  .prose-oe ol {
+    list-style: decimal;
+  }
+  .prose-oe li + li {
+    margin-top: 0.45em;
+  }
+  .prose-oe a {
+    text-decoration: underline;
+    text-decoration-color: var(--color-oe-gold);
+    text-underline-offset: 4px;
+  }
+  .prose-oe blockquote {
+    border-left: 1px solid var(--color-oe-gold);
+    padding-left: 1.5em;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    line-height: 1.45;
+    color: var(--color-oe-ink);
+  }
+  .prose-oe strong {
+    font-weight: 600;
+  }
+}

@@ -10,8 +10,11 @@ import { FactsGrid, SourceLine } from "@/components/Facts";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { PartnerHouses } from "@/components/PartnerHouses";
+import { getPartners } from "@/lib/db";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
+
+export const revalidate = 300;
 
 export async function generateMetadata({ params }: LangParams): Promise<Metadata> {
   const lang = await getLang(params);
@@ -70,7 +73,7 @@ export default async function MarketsPage({ params }: LangParams) {
         <div className="container-oe">
           <SectionHeading eyebrow={m.franceToIndia.eyebrow} title={m.franceToIndia.title} body={m.franceToIndia.body} />
           <div className="mt-16">
-            <PartnerHouses houses={t.partnerHouses} />
+            <PartnerHouses houses={await getPartners(lang)} />
           </div>
         </div>
       </section>

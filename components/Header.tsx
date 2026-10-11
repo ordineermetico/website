@@ -8,7 +8,9 @@ import type { Dictionary } from "@/content";
 import { Logo } from "./Logo";
 import { Arrow } from "./Arrow";
 
-const navKeys = ["firm", "capabilities", "markets", "approach", "insights", "contact"] as const;
+const navKeys = ["firm", "capabilities", "markets", "approach", "news", "contact"] as const;
+/** Shown in the mobile menu only; on desktop Careers sits in the footer. */
+const mobileExtra = ["careers"] as const;
 
 export function Header({ lang, t }: { lang: Locale; t: Dictionary["nav"] }) {
   const pathname = usePathname() || "/";
@@ -151,7 +153,7 @@ export function Header({ lang, t }: { lang: Locale; t: Dictionary["nav"] }) {
       >
         <nav aria-label={t.primary} className="container-oe flex min-h-full flex-col justify-between py-10">
           <ul className="flex flex-col">
-            {(["home", ...navKeys] as const).map((key, i) => {
+            {(["home", ...navKeys, ...mobileExtra] as const).map((key, i) => {
               const href = localePath(lang, routes[key]);
               const active = path === routes[key];
               return (

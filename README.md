@@ -87,6 +87,38 @@ Fields, validation and wording follow Knowledge Base 9.3. Resend is set up for `
 | `CONTACT_TO` | Recipient. Default `office@ordineermetico.com` |
 | `NEXT_PUBLIC_SITE_URL` | Canonical origin. Default `https://ordineermetico.com` |
 
+## Backend: content, careers and staff accounts
+
+**Supabase** project `ordineermetico-website` (Paris, `eu-west-3`) holds everything staff can edit. The schema lives in `supabase/migrations/`.
+
+| Table | What it holds | Who can change it |
+|---|---|---|
+| `posts` | News, press releases, announcements, milestones, insights (EN + FR) | Admin, Communications |
+| `partners` | Partner houses shown on Home, Markets, The Firm, the FAQ and `llms.txt` | Admin, Communications |
+| `jobs` | Positions on the Careers page | Admin, HR |
+| `applications` | Candidates; CVs sit in the private `cvs` storage bucket | Admin, HR (read/update); written only by the website server |
+| `profiles` | One row per staff account, with its role | Admin |
+| `audit_log` | Every create/update/delete above, with who and when | Read by Admin; written by triggers |
+
+Row-level security enforces every rule in the database itself, so a person with the public key, or a staff member with the wrong role, cannot read or change what they are not allowed to, even outside the website. Role checks live in a `private` schema that the API does not expose.
+
+**Admin area:** `https://ordineermetico.com/admin` (not indexed). Sign-in is email + password. Sections appear according to role. Staff accounts are personal; Admin creates them under *Team* and gets a one-time temporary password to hand over in person. Suspending a person also blocks sign-in.
+
+**Publishing:** saving in the admin area refreshes the public site immediately (`lib/admin/revalidate.ts`). Public pages also re-read the database every 5 minutes. If the database is unreachable, partner houses fall back to the built-in copy in `content/`.
+
+**Text formatting** for news and job descriptions: `## Heading`, `- bullet`, `1. numbered`, `**bold**`, `*italic*`, `[text](https://…)`, `> quote`. All text is escaped first (`lib/markdown.ts`), so no HTML or script can be injected.
+
+**Applications:** `POST /api/apply` checks the CV's real file type (PDF, DOC, DOCX, max 4 MB), stores it privately, saves the application and emails `HR_NOTIFY_TO` a link to it (never the CV itself). A daily Vercel cron (`vercel.json` → `/api/cron/purge-applications`) deletes applications and CVs past their two-year retention date.
+
+| Variable | Purpose |
+|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Public connection (safe to expose; RLS protects data) |
+| `SUPABASE_SECRET_KEY` | **Server only.** Needed to receive job applications and to manage staff accounts from *Team*. Supabase → Project settings → API keys → Secret key. Add in Vercel as *Sensitive* |
+| `HR_NOTIFY_TO` | Where application alerts go |
+| `CRON_SECRET` | Authorises the daily clean-up job |
+
+Local development against the remote project from a sandbox that needs an HTTP proxy: `NODE_USE_ENV_PROXY=1 npm run dev`.
+
 ## Search and AI-assistant visibility (KB 9.6)
 
 Done in code: server-rendered HTML for every page and language · `robots.txt` explicitly allowing Googlebot, Bingbot, OAI-SearchBot, ChatGPT-User, Claude-SearchBot, Claude-User, PerplexityBot and (by default, `[PROPOSED]`) the training crawlers GPTBot, ClaudeBot, Google-Extended, Applebot-Extended · `sitemap.xml` with `hreflang` · JSON-LD `Organization`, `WebSite`, `BreadcrumbList`, `Service` (×4) and `FAQPage` · unique titles and descriptions, canonical URLs, Open Graph and Twitter cards · manifest and icons · `llms.txt` · IndexNow key file.

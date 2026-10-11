@@ -4,6 +4,7 @@ import Link from "next/link";
 import { getDictionary } from "@/content";
 import { getLang, localePath, routes, type LangParams } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
+import { getPartners, joinNames } from "@/lib/db";
 import { breadcrumbLd } from "@/lib/structured-data";
 import { Arrow } from "@/components/Arrow";
 import { CorridorDiagram } from "@/components/CorridorDiagram";
@@ -12,6 +13,8 @@ import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
+
+export const revalidate = 300;
 
 export async function generateMetadata({ params }: LangParams): Promise<Metadata> {
   const lang = await getLang(params);
@@ -23,6 +26,7 @@ export default async function FirmPage({ params }: LangParams) {
   const lang = await getLang(params);
   const t = getDictionary(lang);
   const f = t.firm;
+  const houses = joinNames((await getPartners(lang)).map((p) => p.name), lang);
 
   return (
     <>
@@ -117,12 +121,12 @@ export default async function FirmPage({ params }: LangParams) {
         </div>
       </section>
 
-      {/* Partner mention */}
-      <section className="border-t border-oe-rule bg-oe-ivory">
+      {houses ? (
+            <section className="border-t border-oe-rule bg-oe-ivory">
         <div className="container-oe section-tight flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
           <Reveal>
             <p className="eyebrow">{f.partners.eyebrow}</p>
-            <p className="mt-5 font-display text-3xl text-oe-ink">{f.partners.body}</p>
+            <p className="mt-5 font-display text-3xl text-oe-ink">{f.partners.body.replace("{houses}", houses)}</p>
           </Reveal>
           <Reveal delay={100}>
             <Link href={`${localePath(lang, routes.markets)}#france-india`} className="link-arrow whitespace-nowrap">
@@ -131,6 +135,7 @@ export default async function FirmPage({ params }: LangParams) {
           </Reveal>
         </div>
       </section>
+      ) : null}
 
       <JsonLd data={breadcrumbLd(lang, t, [{ name: t.nav.firm, path: routes.firm }])} />
     </>

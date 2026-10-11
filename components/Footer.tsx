@@ -19,11 +19,12 @@ function FooterColumn({ title, children, className = "" }: { title: string; chil
 
 export function Footer({ lang, t }: { lang: Locale; t: Dictionary }) {
   const year = new Date().getFullYear();
-  const explore = (["firm", "capabilities", "markets", "approach", "insights", "contact"] as const).map((k) => ({
+  const explore = (["firm", "capabilities", "markets", "approach", "news", "contact"] as const).map((k) => ({
     href: localePath(lang, routes[k]),
     label: t.nav[k],
   }));
   const legal = [
+    { href: localePath(lang, routes.careers), label: t.nav.careers },
     { href: localePath(lang, routes.legal), label: t.footer.legal },
     { href: localePath(lang, routes.privacy), label: t.footer.privacy },
     { href: localePath(lang, routes.cookies), label: t.footer.cookies },
