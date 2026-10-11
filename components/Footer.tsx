@@ -22,7 +22,7 @@ export function Footer({ lang, t }: { lang: Locale; t: Dictionary }) {
     <footer className="on-dark relative overflow-hidden bg-oe-black text-oe-softwhite">
       <div className="container-oe pb-10 pt-24 sm:pt-32">
         <div className="grid gap-16 lg:grid-cols-12">
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-4">
             <Image
               src="/brand/oe-logo-gold-transparent.png"
               alt="Ordine Ermetico"
@@ -37,7 +37,7 @@ export function Footer({ lang, t }: { lang: Locale; t: Dictionary }) {
             </div>
           </div>
 
-          <div className="grid gap-12 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] sm:gap-x-14 lg:col-span-7">
+          <div className="grid gap-12 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] sm:gap-x-12 lg:col-span-8">
             <div>
               <h2 className="label mb-6 text-oe-gold" style={{ fontFamily: "var(--font-label)" }}>
                 {t.footer.explore}
@@ -68,7 +68,7 @@ export function Footer({ lang, t }: { lang: Locale; t: Dictionary }) {
               <ul className="space-y-3.5">
                 {legal.map((l) => (
                   <li key={l.href}>
-                    <Link href={l.href} className="link-line whitespace-nowrap text-[0.95rem] text-oe-softwhite/80 hover:text-oe-softwhite">
+                    <Link href={l.href} className="link-line text-[0.95rem] text-oe-softwhite/80 hover:text-oe-softwhite">
                       {l.label}
                     </Link>
                   </li>
