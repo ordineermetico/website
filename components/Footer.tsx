@@ -25,6 +25,7 @@ export function Footer({ lang, t }: { lang: Locale; t: Dictionary }) {
   }));
   const legal = [
     { href: localePath(lang, routes.careers), label: t.nav.careers },
+    { href: localePath(lang, routes.press), label: t.nav.press },
     { href: localePath(lang, routes.legal), label: t.footer.legal },
     { href: localePath(lang, routes.privacy), label: t.footer.privacy },
     { href: localePath(lang, routes.cookies), label: t.footer.cookies },

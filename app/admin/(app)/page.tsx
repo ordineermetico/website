@@ -16,8 +16,8 @@ const cards: { section: Section; href: string; title: string; text: string; tabl
 
 const countLabel: Record<string, string> = { posts: "items", partners: "published", jobs: "open", applications: "new", profiles: "accounts" };
 
-export default async function Dashboard({ searchParams }: { searchParams: Promise<{ denied?: string }> }) {
-  const { denied } = await searchParams;
+export default async function Dashboard({ searchParams }: { searchParams: Promise<{ denied?: string; twostep?: string }> }) {
+  const { denied, twostep } = await searchParams;
   const staff = await getStaff();
   const db = await staffClient();
   const visible = cards.filter((c) => canAccess(staff.role, c.section));
@@ -34,6 +34,8 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
       ? (await db.from("audit_log").select("id,actor_email,action,table_name,summary,at").order("at", { ascending: false }).limit(6)).data ?? []
       : [];
   const missingSecret = staff.role === "admin" && !serviceClient();
+  const awaitingSignoff =
+    staff.role === "admin" ? ((await db.from("posts").select("id", { count: "exact", head: true }).eq("signoff_status", "pending")).count ?? 0) : 0;
 
   return (
     <>
@@ -46,6 +48,20 @@ export default async function Dashboard({ searchParams }: { searchParams: Promis
         <p role="alert" className="mt-8 border-l border-[#9b2c1f] pl-4 text-sm text-[#9b2c1f]">
           Your role does not give access to that section.
         </p>
+      ) : null}
+
+      {twostep === "on" ? <p className="mt-8 text-sm text-[#2f5a3b]">Two-step sign-in is on. You will be asked for a code each time you sign in.</p> : null}
+
+      {awaitingSignoff ? (
+        <Link href="/admin/news?signoff=pending" className="mt-10 flex items-center justify-between gap-6 border border-oe-bronze bg-oe-paper px-6 py-5 transition-colors hover:bg-oe-ivory">
+          <span>
+            <span className="font-display text-2xl text-oe-ink">
+              {awaitingSignoff} {awaitingSignoff === 1 ? "item awaits" : "items await"} your sign-off
+            </span>
+            <span className="block text-sm text-oe-graphite">Nothing goes live until an Admin approves it.</span>
+          </span>
+          <span className="label text-oe-bronze">Review</span>
+        </Link>
       ) : null}
 
       {!staff.role ? (

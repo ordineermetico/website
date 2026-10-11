@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
-import { addMember, deleteMember, resetPassword, updateMember, type TeamState } from "@/app/admin/actions/team";
+import { addMember, deleteMember, resetPassword, resetTwoStep, updateMember, type TeamState } from "@/app/admin/actions/team";
 import { ConfirmButton, FormMessage, SubmitButton } from "./client";
 import { Field } from "./ui";
 
@@ -60,6 +60,7 @@ export function MemberRow({
 }) {
   const [state, action] = useActionState(updateMember, undefined);
   const [resetState, resetAction] = useActionState(resetPassword, undefined);
+  const [mfaState, mfaAction] = useActionState(resetTwoStep, undefined);
   return (
     <li className="py-6">
       <div className="space-y-5">
@@ -104,6 +105,16 @@ export function MemberRow({
               <SubmitButton variant="ghost" pendingLabel="Resetting…">
                 Reset password
               </SubmitButton>
+              <button
+                type="submit"
+                formAction={mfaAction}
+                onClick={(e) => {
+                  if (!window.confirm("Reset this person's two-step sign-in? Use this when they lose or replace their phone.")) e.preventDefault();
+                }}
+                className="label min-h-11 px-1 text-oe-bronze underline-offset-4 hover:underline"
+              >
+                Reset two-step
+              </button>
               <ConfirmButton message={`Delete the account for ${email}? Their past changes stay in the activity log.`} formAction={deleteMember}>
                 Delete
               </ConfirmButton>
@@ -114,6 +125,7 @@ export function MemberRow({
       <div className="mt-3 space-y-3">
         <FormMessage state={state} />
         <FormMessage state={resetState} />
+        <FormMessage state={mfaState} />
         <PasswordReveal state={resetState} />
       </div>
     </li>

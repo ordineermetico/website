@@ -14,6 +14,7 @@ const priorities: Partial<Record<keyof typeof routes, number>> = {
   contact: 0.7,
   news: 0.6,
   careers: 0.6,
+  press: 0.5,
   legal: 0.2,
   privacy: 0.2,
   cookies: 0.1,

@@ -13,7 +13,7 @@ export type Partner = {
   websiteUrl: string | null;
 };
 
-export type PostKind = "news" | "press_release" | "announcement" | "milestone" | "insight";
+export type PostKind = "news" | "press_release" | "announcement" | "milestone" | "insight" | "partnership";
 
 export type PostSummary = {
   slug: string;

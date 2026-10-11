@@ -1,7 +1,7 @@
 "use client";
 
-import { useActionState } from "react";
-import { deletePost, savePost } from "@/app/admin/actions/posts";
+import { useActionState, useState } from "react";
+import { approvePost, deletePost, requestChanges, savePost } from "@/app/admin/actions/posts";
 import { ConfirmButton, FormMessage, SubmitButton } from "./client";
 import { FORMAT_HELP, Field } from "./ui";
 
@@ -18,25 +18,90 @@ export type PostValues = {
   body_fr: string;
   cover_image: string | null;
   published_on: string;
+  requires_signoff: boolean;
+  signoff_status: "none" | "pending" | "approved" | "changes_requested";
+  signoff_note: string | null;
+  signoff_by: string | null;
+  signoff_at: string | null;
 };
 
-export function PostForm({ values, saved }: { values: PostValues; saved?: boolean }) {
-  const [state, action] = useActionState(savePost, saved ? { ok: true, message: "Saved." } : undefined);
+const SIGNOFF_TEXT: Record<string, { tone: string; title: string; body: string }> = {
+  pending: { tone: "border-oe-bronze", title: "Awaiting Admin sign-off", body: "It goes live once an Admin approves it. You can still edit it." },
+  changes_requested: { tone: "border-[#9b2c1f]", title: "Changes requested", body: "Make the changes below, then submit it for sign-off again." },
+  approved: { tone: "border-[#3d6b4a]", title: "Signed off", body: "Editing the text again sends it back for sign-off." },
+};
+
+export function SignoffBanner({ values }: { values: PostValues }) {
+  if (!values.requires_signoff || values.signoff_status === "none") return null;
+  const t = SIGNOFF_TEXT[values.signoff_status];
+  return (
+    <div className={`mt-8 border-l-2 bg-oe-paper px-5 py-4 ${t.tone}`}>
+      <p className="label text-oe-ink">{t.title}</p>
+      <p className="mt-1 text-sm text-oe-graphite">
+        {t.body}
+        {values.signoff_status === "approved" && values.signoff_by ? ` Approved by ${values.signoff_by}${values.signoff_at ? ` on ${values.signoff_at}` : ""}.` : ""}
+      </p>
+      {values.signoff_note && values.signoff_status === "changes_requested" ? <p className="mt-3 whitespace-pre-wrap text-sm text-oe-ink">“{values.signoff_note}”</p> : null}
+    </div>
+  );
+}
+
+/** Admin-only review controls, shown above the editor when an item waits for sign-off. */
+export function SignoffReview({ id }: { id: string }) {
+  const [approveState, approve] = useActionState(approvePost, undefined);
+  const [changesState, changes] = useActionState(requestChanges, undefined);
+  return (
+    <section className="mt-8 grid gap-8 border border-oe-bronze p-6 sm:p-8 lg:grid-cols-2">
+      <form action={approve} className="space-y-4">
+        <input type="hidden" name="id" value={id} />
+        <p className="label text-oe-bronze">Your sign-off</p>
+        <p className="text-sm text-oe-graphite">Read the item below. Approving publishes it straight away (or on its publication date).</p>
+        <SubmitButton pendingLabel="Publishing…">Approve and publish</SubmitButton>
+        <FormMessage state={approveState} />
+      </form>
+      <form action={changes} className="space-y-4">
+        <input type="hidden" name="id" value={id} />
+        <label htmlFor="note" className="field-label">
+          Or send it back with a note
+        </label>
+        <textarea id="note" name="note" rows={3} className="field" placeholder="What needs to change?" />
+        <SubmitButton variant="ghost" pendingLabel="Sending…">
+          Request changes
+        </SubmitButton>
+        <FormMessage state={changesState} />
+      </form>
+    </section>
+  );
+}
+
+export function PostForm({ values, saved, isAdmin }: { values: PostValues; saved?: "1" | "pending"; isAdmin: boolean }) {
+  const [state, action] = useActionState(
+    savePost,
+    saved === "pending" ? { ok: true, message: "Saved and sent to an Admin for sign-off. It goes live once approved." } : saved ? { ok: true, message: "Saved." } : undefined,
+  );
+  const [kind, setKind] = useState(values.kind);
+  const [wantsSignoff, setWantsSignoff] = useState(values.requires_signoff);
+  const needsSignoff = kind === "partnership" || wantsSignoff;
   return (
     <form action={action} className="mt-10 space-y-12">
       {values.id ? <input type="hidden" name="id" value={values.id} /> : null}
 
       <div className="grid gap-8 sm:grid-cols-3">
         <Field label="Type" htmlFor="kind">
-          <select id="kind" name="kind" defaultValue={values.kind} className="field">
+          <select id="kind" name="kind" value={kind} onChange={(e) => setKind(e.target.value)} className="field">
             <option value="news">News</option>
             <option value="press_release">Press release</option>
             <option value="announcement">Announcement</option>
             <option value="milestone">Milestone</option>
+            <option value="partnership">Partnership announcement (needs sign-off)</option>
             <option value="insight">Insight (article)</option>
           </select>
         </Field>
-        <Field label="Status" htmlFor="status" hint="Draft is private. Published shows on the site from the publication date. Archived hides it.">
+        <Field
+          label="Status"
+          htmlFor="status"
+          hint={needsSignoff && !isAdmin ? "Choosing Published sends it for sign-off; it goes live once approved." : "Draft is private. Published shows on the site from the publication date. Archived hides it."}
+        >
           <select id="status" name="status" defaultValue={values.status} className="field">
             <option value="draft">Draft</option>
             <option value="published">Published</option>
@@ -47,6 +112,24 @@ export function PostForm({ values, saved }: { values: PostValues; saved?: boolea
           <input id="published_on" name="published_on" type="date" defaultValue={values.published_on} className="field" />
         </Field>
       </div>
+
+      <label className="flex items-start gap-3 border border-oe-rule bg-oe-paper px-5 py-4 text-[0.95rem] text-oe-ink">
+        <input
+          type="checkbox"
+          name="requires_signoff"
+          checked={needsSignoff}
+          disabled={kind === "partnership" || (values.requires_signoff && !isAdmin)}
+          onChange={(e) => setWantsSignoff(e.target.checked)}
+          className="mt-1 size-4 accent-[#7E5A1E]"
+        />
+        {kind === "partnership" || (values.requires_signoff && !isAdmin) ? <input type="hidden" name="requires_signoff" value="on" /> : null}
+        <span>
+          <strong className="font-semibold">Needs Admin sign-off</strong>
+          <span className="block text-sm text-oe-graphite">
+            For sensitive items: partnerships, investment, legal or financial news. It stays offline until an Admin approves it. Partnership announcements always need it; everything else publishes directly.
+          </span>
+        </span>
+      </label>
 
       <div className="grid gap-10 lg:grid-cols-2">
         <fieldset className="space-y-8">
@@ -97,6 +180,11 @@ export function PostForm({ values, saved }: { values: PostValues; saved?: boolea
       <div className="flex flex-col gap-6 border-t border-oe-rule pt-8 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-wrap items-center gap-5">
           <SubmitButton>Save</SubmitButton>
+          {needsSignoff && !isAdmin && values.signoff_status !== "pending" ? (
+            <SubmitButton variant="ghost" name="submit_for_signoff" value="1" pendingLabel="Submitting…">
+              Submit for sign-off
+            </SubmitButton>
+          ) : null}
           {values.id && values.status === "published" ? (
             <a href={`/news/${values.slug}`} target="_blank" rel="noopener" className="label link-line text-oe-bronze">
               View on site

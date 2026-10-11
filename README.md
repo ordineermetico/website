@@ -104,6 +104,14 @@ Row-level security enforces every rule in the database itself, so a person with 
 
 **Admin area:** `https://ordineermetico.com/admin` (not indexed). Sign-in is email + password. Sections appear according to role. Staff accounts are personal; Admin creates them under *Team* and gets a one-time temporary password to hand over in person. Suspending a person also blocks sign-in.
 
+**Two-step sign-in.** Required for Admin accounts (TOTP authenticator app); optional for Communications and HR (*My account*). The database enforces it too: admin rights only apply to sessions that completed two-step sign-in (`private.has_role`). A lost phone is handled by another Admin under *Team → Reset two-step*.
+
+**First sign-in.** Accounts created with a temporary password (`profiles.must_change_password`) must choose their own before anything else. Admin-created accounts and password resets set this automatically.
+
+**Admin sign-off for sensitive news.** Any item can be marked *Needs Admin sign-off*; *Partnership announcement* items always need it. Until an Admin approves, the item stays offline whatever its status (enforced by the `posts_signoff` trigger and the public read policy). Only Admins can approve or remove the requirement; editing an approved item sends it back for sign-off. Admins are emailed at `ADMIN_NOTIFY_TO`; authors are emailed when their item is approved or sent back. Everything else publishes directly.
+
+**Press kit** at `/press` (EN/FR): approved descriptions with copy buttons, logo downloads, colours, usage rules, founder portrait, latest press releases, and `public/press/ordine-ermetico-press-kit.zip` (regenerate it if logos or texts change).
+
 **Publishing:** saving in the admin area refreshes the public site immediately (`lib/admin/revalidate.ts`). Public pages also re-read the database every 5 minutes. If the database is unreachable, partner houses fall back to the built-in copy in `content/`.
 
 **Text formatting** for news and job descriptions: `## Heading`, `- bullet`, `1. numbered`, `**bold**`, `*italic*`, `[text](https://…)`, `> quote`. All text is escaped first (`lib/markdown.ts`), so no HTML or script can be injected.
@@ -114,7 +122,8 @@ Row-level security enforces every rule in the database itself, so a person with 
 |---|---|
 | `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Public connection (safe to expose; RLS protects data) |
 | `SUPABASE_SECRET_KEY` | **Server only.** Needed to receive job applications and to manage staff accounts from *Team*. Supabase → Project settings → API keys → Secret key. Add in Vercel as *Sensitive* |
-| `HR_NOTIFY_TO` | Where application alerts go |
+| `HR_NOTIFY_TO` | Where application alerts go (join@ordineermetico.com) |
+| `ADMIN_NOTIFY_TO` | Where sign-off requests go (it@ordineermetico.com) |
 | `CRON_SECRET` | Authorises the daily clean-up job |
 
 Local development against the remote project from a sandbox that needs an HTTP proxy: `NODE_USE_ENV_PROXY=1 npm run dev`.
