@@ -64,7 +64,8 @@ scripts/indexnow.mjs      ping IndexNow after a production deploy
 | `oe-softwhite` | `#F3EDE2` | text on black |
 
 - **Type scale:** `display-xl` (hero), `display-lg`, `display-md`, `display-sm`, `lede`, `label`, `eyebrow` — see `app/globals.css`.
-- **Signature frame:** `<Frame>` — a fine double hairline with small concave corners. Used on the hero emblem, the FTA figure, the structure diagram, the exclusive-agreement note and the closing call to action only.
+- **Signature frame:** `<Frame>` — a fine double hairline with small concave corners. Used on the hero emblem, the FTA figure, the structure diagram, the founder portrait, the exclusive-agreement note and the closing call to action only.
+- **Section kickers** (`.eyebrow`) are a small italic line in the display face, not uppercase labels; uppercase Tenor Sans is kept for navigation, buttons and metadata.
 - **Paper grain:** `.grain`, 3.5% opacity, inline SVG noise (no image request).
 - **Motion:** fades and short rises on scroll (`<Reveal>` + one shared `IntersectionObserver`), a slow emblem fade-in, and the corridor lines drawing themselves. Everything is disabled under `prefers-reduced-motion`, and content is never hidden when JavaScript is unavailable.
 - **Arrows** are drawn SVG (`<Arrow>`): Tenor Sans has no `→` glyph.
@@ -72,10 +73,11 @@ scripts/indexnow.mjs      ping IndexNow after a production deploy
 
 ## Contact form
 
-Fields, validation and wording follow Knowledge Base 9.3. Behaviour:
+Fields, validation and wording follow Knowledge Base 9.3. Resend is set up for `ordineermetico.com` (EU region) with a sending-only key stored in Vercel as `RESEND_API_KEY` (sensitive). Sending starts once the Resend DNS records at GoDaddy verify. Behaviour:
 
 - Validated on the client and again on the server (`lib/contact.ts`).
 - Honeypot field and a best-effort rate limit (5 per IP per 10 minutes per server instance). For a hard limit, add a Vercel WAF rate-limit rule on `/api/contact`.
+- If Resend rejects the send because the domain is not yet verified, the visitor gets the same `mailto:` fallback rather than an error.
 - **If `RESEND_API_KEY` is not set, the form never pretends to send.** After validation it shows a "write to us directly" panel with a `mailto:` link pre-filled with the enquiry. The contact page reads the variable at build time, so **redeploy after adding the key**.
 
 | Variable | Purpose |

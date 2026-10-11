@@ -163,8 +163,8 @@ export default async function Home({ params }: LangParams) {
                 className="group relative border-b border-oe-rule py-10 sm:px-8 sm:odd:pl-0 lg:border-b-0 lg:px-8 lg:first:pl-0 lg:[&:not(:first-child)]:border-l"
               >
                 <Link href={`${localePath(lang, routes.capabilities)}#${c.id}`} className="block">
-                  <p className="font-display text-5xl text-oe-gold transition-colors duration-500 group-hover:text-oe-bronze">{c.number}</p>
-                  <h3 className="mt-10 font-display text-[1.6rem] leading-tight text-oe-ink">{c.title}</h3>
+                  <p className="label text-oe-bronze">{c.number}</p>
+                  <h3 className="mt-6 font-display text-[1.6rem] leading-tight text-oe-ink">{c.title}</h3>
                   <p className="mt-4 text-[0.98rem] text-oe-graphite">{c.summary}</p>
                   <span className="link-arrow mt-8 opacity-70 transition-opacity duration-500 group-hover:opacity-100">
                     <Arrow />

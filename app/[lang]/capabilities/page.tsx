@@ -40,8 +40,8 @@ export default async function CapabilitiesPage({ params }: LangParams) {
         <section key={cap.id} id={cap.id} className={`section border-b border-oe-rule ${idx % 2 ? "bg-oe-paper" : "bg-oe-ivory"}`}>
           <div className="container-oe grid gap-12 lg:grid-cols-12">
             <Reveal className="lg:col-span-4">
-              <p className="font-display text-[5.5rem] leading-none text-oe-gold sm:text-[7rem]">{cap.number}</p>
-              <h2 className="display-md mt-6">{cap.title}</h2>
+              <p className="label text-oe-bronze">{cap.number}</p>
+              <h2 className="display-md mt-5">{cap.title}</h2>
               <p className="mt-5 font-display text-xl italic text-oe-graphite">{cap.summary}</p>
             </Reveal>
 

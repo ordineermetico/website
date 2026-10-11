@@ -98,7 +98,12 @@ export async function POST(request: Request) {
       }),
     });
     if (!res.ok) {
-      console.error("Resend error", res.status, await res.text().catch(() => ""));
+      const detail = await res.text().catch(() => "");
+      console.error("Resend error", res.status, detail);
+      // Key rejected or sending domain not yet verified: treat as "not configured" so the visitor gets the mailto fallback.
+      if (res.status === 401 || res.status === 403 || /not verified|domain/i.test(detail)) {
+        return NextResponse.json({ ok: false, code: "not_configured" }, { status: 503 });
+      }
       return NextResponse.json({ ok: false, code: "send_failed" }, { status: 502 });
     }
     return NextResponse.json({ ok: true });

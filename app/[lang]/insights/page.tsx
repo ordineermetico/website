@@ -3,7 +3,6 @@ import { getDictionary } from "@/content";
 import { getLang, routes, type LangParams } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
 import { breadcrumbLd } from "@/lib/structured-data";
-import { CtaBand } from "@/components/CtaBand";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
@@ -47,7 +46,6 @@ export default async function InsightsPage({ params }: LangParams) {
           </ul>
         </div>
       </section>
-      <CtaBand lang={lang} t={t} />
       <JsonLd data={breadcrumbLd(lang, t, [{ name: t.nav.insights, path: routes.insights }])} />
     </>
   );

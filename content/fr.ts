@@ -73,15 +73,15 @@ const fr: Dictionary = {
       scroll: "Défiler",
     },
     intro: {
-      eyebrow: "Notre conviction",
+      eyebrow: "Notre manière de travailler",
       title: "Une relation commerciale se construit comme une architecture.",
       body: "Entrer sur un marché ne se résume pas à trouver un acheteur. Cela suppose de comprendre le positionnement, la distribution, les interlocuteurs, et la structure dans laquelle une relation commerciale pourra se développer.",
       aside:
         "Nous travaillons avec un petit nombre de maisons, choisies pour leur qualité et parce qu’elles ne sont pas encore présentes en Inde. Pour chacune, nous sommes une voie d’accès unique et responsable.",
     },
     directions: {
-      eyebrow: "Le corridor",
-      title: "Une même exigence. Deux directions.",
+      eyebrow: "Deux directions",
+      title: "De la France vers l’Inde, et retour.",
       items: [
         {
           from: "France",
@@ -101,23 +101,23 @@ const fr: Dictionary = {
     },
     capabilities: {
       eyebrow: "Savoir-faire",
-      title: "Quatre disciplines, un seul interlocuteur responsable.",
-      cta: "Tous nos savoir-faire",
+      title: "Ce que nous faisons pour une maison.",
+      cta: "Voir le détail",
     },
     process: {
       eyebrow: "Méthode",
-      title: "La sélection précède la représentation.",
-      body: "Notre méthode de travail, de la première conversation à une présence durable.",
-      cta: "Notre façon de travailler",
+      title: "Comment se déroule un partenariat.",
+      body: "Quatre étapes, d’une première conversation à Reims jusqu’à des comptes durables.",
+      cta: "Lire notre méthode",
     },
     fta: {
-      eyebrow: "Perspective · Inde–UE",
-      title: "Un marché qui s’ouvre, par traité.",
-      body: "L’accord de libre-échange entre l’Inde et l’Union européenne va fortement réduire les droits de douane indiens sur les vins européens. Pour les maisons françaises, le prochain chapitre du marché indien s’écrit maintenant.",
+      eyebrow: "L’accord Inde–UE",
+      title: "L’Inde abaisse ses droits sur les vins européens.",
+      body: "Conclu en janvier 2026, l’accord ramène par étapes les droits indiens de 150 % sur les vins européens. Les maisons qui préparent leur entrée dès maintenant seront prêtes à chaque étape.",
       from: "Aujourd’hui",
       to: "D’ici sept ans",
       caption: "Droits de douane indiens sur les vins premium de l’UE",
-      cta: "Lire notre regard sur les marchés",
+      cta: "En savoir plus sur le marché indien",
     },
     partners: {
       eyebrow: "Maisons partenaires",
@@ -126,7 +126,7 @@ const fr: Dictionary = {
     },
     faq: {
       eyebrow: "Questions",
-      title: "Des réponses claires.",
+      title: "Ce que les maisons nous demandent d’abord.",
     },
     closing: {
       eyebrow: "Contact",
@@ -210,7 +210,7 @@ const fr: Dictionary = {
     metaDescription:
       "Importation et distribution exclusives, architecture d’entrée sur le marché, positionnement de marque et sélection des partenaires : comment Ordine Ermetico accompagne les maisons françaises en Inde.",
     eyebrow: "Savoir-faire",
-    title: "Quatre disciplines, un seul interlocuteur responsable.",
+    title: "Ce que nous faisons pour une maison.",
     lede: "Ordine Ermetico, société française basée à Reims, travaille avec chaque maison en tant qu’importateur et distributeur exclusif pour l’Inde. Voici les quatre disciplines sur lesquelles repose cette voie d’accès.",
     labels: {
       problem: "L’enjeu",
@@ -251,23 +251,12 @@ const fr: Dictionary = {
     },
     corridor: {
       eyebrow: "Le corridor",
-      title: "Proche de la source. Pensé pour la destination.",
+      title: "Pourquoi nous sommes à Reims.",
       body: "Nous sommes basés à Reims et travaillons directement avec les maisons. Une présence permanente en Europe permet d’entretenir au plus près les relations, la crédibilité et les opérations avec les maisons européennes. Elle rendra aussi, le moment venu, l’importation depuis l’Inde vers l’Europe plus simple.",
-    },
-    principles: {
-      eyebrow: "Principes",
-      title: "Ce que nous voulons incarner.",
-      items: [
-        { title: "Discrets", body: "sans être secrets." },
-        { title: "Sélectifs", body: "sans arrogance." },
-        { title: "Précis", body: "sans lourdeur." },
-        { title: "Confiants", body: "sans ostentation." },
-        { title: "Dans la durée", body: "plutôt que dans la transaction." },
-      ],
     },
     structure: {
       eyebrow: "Notre structure",
-      title: "Une société mère française. Une société indienne en cours de création.",
+      title: "Comment la société est organisée.",
       parent: {
         label: "France · Reims",
         name: "Ordine Ermetico",
@@ -302,7 +291,7 @@ const fr: Dictionary = {
     lede: "Deux pays, lus avec attention. La France, où sont les maisons. L’Inde, où l’opportunité s’ouvre.",
     france: {
       eyebrow: "France · La source",
-      title: "Des maisons, un savoir-faire, et du temps.",
+      title: "Là où sont les maisons.",
       body: [
         "La France abrite des maisons dont le prestige s’est construit sur des générations : en Champagne, dans le vin, le luxe et la beauté. Leur valeur tient à ce qui ne se presse pas : le terroir, le geste et la constance.",
         "Depuis Reims, nous travaillons directement avec ces maisons. Notre rôle est de porter cette valeur intacte sur un nouveau marché.",
@@ -311,7 +300,7 @@ const fr: Dictionary = {
     },
     india: {
       eyebrow: "Inde · L’opportunité",
-      title: "Un marché à l’aube de son prochain chapitre.",
+      title: "Là où l’opportunité s’ouvre.",
       body: "Le marché premium indien progresse, et l’accord de libre-échange entre l’Inde et l’UE va fortement réduire les droits sur les vins européens. Les faits ci-dessous proviennent de sources publiées et datées.",
     },
     franceToIndia: {
@@ -385,8 +374,8 @@ const fr: Dictionary = {
     metaDescription:
       "Les analyses d’Ordine Ermetico sur les maisons françaises, le marché indien et l’accord de libre-échange Inde–UE.",
     eyebrow: "Perspectives",
-    title: "Notes depuis le corridor.",
-    lede: "Des analyses mûries sur les maisons françaises et le marché indien. Publiées lorsqu’il y a quelque chose d’utile à dire.",
+    title: "Nos écrits sur les maisons françaises et le marché indien.",
+    lede: "De courts textes sur le commerce, la distribution et le positionnement en Inde. Nous publions lorsque nous avons quelque chose d’utile à apporter.",
     empty: "Nos premières analyses sont en préparation.",
     upcomingTitle: "En préparation",
     upcoming: [

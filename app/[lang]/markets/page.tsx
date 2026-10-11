@@ -6,7 +6,6 @@ import { getLang, localePath, routes, type LangParams } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
 import { breadcrumbLd } from "@/lib/structured-data";
 import { Arrow } from "@/components/Arrow";
-import { CtaBand } from "@/components/CtaBand";
 import { FactsGrid, SourceLine } from "@/components/Facts";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
@@ -90,7 +89,6 @@ export default async function MarketsPage({ params }: LangParams) {
         </div>
       </section>
 
-      <CtaBand lang={lang} t={t} />
       <JsonLd data={breadcrumbLd(lang, t, [{ name: t.nav.markets, path: routes.markets }])} />
     </>
   );

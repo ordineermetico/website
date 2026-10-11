@@ -7,7 +7,6 @@ import { pageMetadata } from "@/lib/seo";
 import { breadcrumbLd } from "@/lib/structured-data";
 import { Arrow } from "@/components/Arrow";
 import { CorridorDiagram } from "@/components/CorridorDiagram";
-import { CtaBand } from "@/components/CtaBand";
 import { Frame } from "@/components/Frame";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
@@ -60,26 +59,6 @@ export default async function FirmPage({ params }: LangParams) {
               bottomLabel={`${t.home.directions.items[1].from} → ${t.home.directions.items[1].to}`}
             />
           </Reveal>
-        </div>
-      </section>
-
-      {/* Principles */}
-      <section className="section bg-oe-ivory">
-        <div className="container-oe">
-          <SectionHeading eyebrow={f.principles.eyebrow} title={f.principles.title} />
-          <ul className="mt-16 grid border-t border-oe-rule sm:grid-cols-2 lg:grid-cols-5">
-            {f.principles.items.map((p, i) => (
-              <Reveal
-                as="li"
-                key={p.title}
-                delay={i * 100}
-                className="border-b border-oe-rule py-10 lg:border-b-0 lg:px-6 lg:first:pl-0 lg:[&:not(:first-child)]:border-l"
-              >
-                <p className="font-display text-[2rem] leading-none text-oe-ink">{p.title}</p>
-                <p className="mt-3 font-display text-xl italic text-oe-graphite">{p.body}</p>
-              </Reveal>
-            ))}
-          </ul>
         </div>
       </section>
 
@@ -153,7 +132,6 @@ export default async function FirmPage({ params }: LangParams) {
         </div>
       </section>
 
-      <CtaBand lang={lang} t={t} />
       <JsonLd data={breadcrumbLd(lang, t, [{ name: t.nav.firm, path: routes.firm }])} />
     </>
   );

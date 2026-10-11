@@ -37,7 +37,7 @@ export function Footer({ lang, t }: { lang: Locale; t: Dictionary }) {
             </div>
           </div>
 
-          <div className="grid gap-12 sm:grid-cols-3 lg:col-span-7">
+          <div className="grid gap-12 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] sm:gap-x-14 lg:col-span-7">
             <div>
               <h2 className="label mb-6 text-oe-gold" style={{ fontFamily: "var(--font-label)" }}>
                 {t.footer.explore}
@@ -45,7 +45,7 @@ export function Footer({ lang, t }: { lang: Locale; t: Dictionary }) {
               <ul className="space-y-3.5">
                 {explore.map((l) => (
                   <li key={l.href}>
-                    <Link href={l.href} className="link-line text-[0.95rem] text-oe-softwhite/80 hover:text-oe-softwhite">
+                    <Link href={l.href} className="link-line whitespace-nowrap text-[0.95rem] text-oe-softwhite/80 hover:text-oe-softwhite">
                       {l.label}
                     </Link>
                   </li>
@@ -56,7 +56,7 @@ export function Footer({ lang, t }: { lang: Locale; t: Dictionary }) {
               <h2 className="label mb-6 text-oe-gold" style={{ fontFamily: "var(--font-label)" }}>
                 {t.footer.write}
               </h2>
-              <a href={`mailto:${site.email}`} className="link-line break-all text-[0.95rem] text-oe-softwhite/90 hover:text-oe-softwhite">
+              <a href={`mailto:${site.email}`} className="link-line whitespace-nowrap text-[0.95rem] text-oe-softwhite/90 hover:text-oe-softwhite">
                 {site.email}
               </a>
               <p className="mt-6 text-[0.95rem] text-oe-muted-dark">{t.footer.base}</p>
@@ -68,7 +68,7 @@ export function Footer({ lang, t }: { lang: Locale; t: Dictionary }) {
               <ul className="space-y-3.5">
                 {legal.map((l) => (
                   <li key={l.href}>
-                    <Link href={l.href} className="link-line text-[0.95rem] text-oe-softwhite/80 hover:text-oe-softwhite">
+                    <Link href={l.href} className="link-line whitespace-nowrap text-[0.95rem] text-oe-softwhite/80 hover:text-oe-softwhite">
                       {l.label}
                     </Link>
                   </li>

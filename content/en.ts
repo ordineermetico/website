@@ -72,15 +72,15 @@ const en = {
       scroll: "Scroll",
     },
     intro: {
-      eyebrow: "Our premise",
+      eyebrow: "Why we work the way we do",
       title: "Commercial relationships require architecture.",
       body: "Entering a market is not simply a matter of finding a buyer. It requires an understanding of positioning, distribution, counterparties, and the structure through which a commercial relationship can develop.",
       aside:
         "We work with a small number of houses, chosen for their quality and because India does not have them yet. For each, we are a single, accountable route to market.",
     },
     directions: {
-      eyebrow: "The corridor",
-      title: "One discipline. Two directions.",
+      eyebrow: "Two directions",
+      title: "From France to India, and back again.",
       items: [
         {
           from: "France",
@@ -100,23 +100,23 @@ const en = {
     },
     capabilities: {
       eyebrow: "Capabilities",
-      title: "Four disciplines, one accountable route.",
-      cta: "All capabilities",
+      title: "What we do for a house.",
+      cta: "See each in detail",
     },
     process: {
       eyebrow: "Approach",
-      title: "Selection precedes representation.",
-      body: "Our working method, from the first conversation to a lasting presence.",
-      cta: "How we work",
+      title: "How a partnership unfolds.",
+      body: "Four stages, from a first conversation in Reims to accounts that last.",
+      cta: "Read the approach",
     },
     fta: {
-      eyebrow: "Insight · India–EU",
-      title: "A market opening, by treaty.",
-      body: "The India–EU Free Trade Agreement will sharply lower India’s duties on European wine. For French houses, the next chapter of the Indian market is being written now.",
+      eyebrow: "The India–EU agreement",
+      title: "India is lowering its duties on European wine.",
+      body: "Concluded in January 2026, the agreement brings India’s 150% duty on European wine down in steps. Houses that prepare their entry now will be ready as each cut takes effect.",
       from: "Today",
       to: "Within seven years",
       caption: "India’s duty on premium EU wine",
-      cta: "Read the market view",
+      cta: "More on the Indian market",
     },
     partners: {
       eyebrow: "Partner Houses",
@@ -125,7 +125,7 @@ const en = {
     },
     faq: {
       eyebrow: "Questions",
-      title: "Plainly answered.",
+      title: "What houses usually ask us first.",
     },
     closing: {
       eyebrow: "Contact",
@@ -209,7 +209,7 @@ const en = {
     metaDescription:
       "Exclusive import and distribution, market entry architecture, brand positioning and partner selection: how Ordine Ermetico brings French houses to India.",
     eyebrow: "Capabilities",
-    title: "Four disciplines, one accountable route.",
+    title: "What we do for a house.",
     lede: "Ordine Ermetico, a French company based in Reims, works with each house as its exclusive importer and distributor for India. These are the four disciplines that route is built on.",
     labels: {
       problem: "The problem",
@@ -250,23 +250,12 @@ const en = {
     },
     corridor: {
       eyebrow: "The corridor",
-      title: "Close to the source. Built for the destination.",
+      title: "Why we are based in Reims.",
       body: "We are based in Reims and work directly with the houses. A permanent footprint in Europe makes it easier to keep relationships, credibility and operations with European houses close at hand. In time, it also makes importing from India into Europe straightforward.",
-    },
-    principles: {
-      eyebrow: "Principles",
-      title: "How we intend to be known.",
-      items: [
-        { title: "Discreet", body: "not secretive." },
-        { title: "Selective", body: "not arrogant." },
-        { title: "Precise", body: "not bureaucratic." },
-        { title: "Confident", body: "not boastful." },
-        { title: "Long-term", body: "not transactional." },
-      ],
     },
     structure: {
       eyebrow: "Our structure",
-      title: "A French parent. An Indian company, being established.",
+      title: "How the company is organised.",
       parent: {
         label: "France · Reims",
         name: "Ordine Ermetico",
@@ -301,7 +290,7 @@ const en = {
     lede: "Two countries, read closely. France, where the houses are. India, where the opportunity is opening.",
     france: {
       eyebrow: "France · The source",
-      title: "Houses, savoir-faire, and time.",
+      title: "Where the houses are.",
       body: [
         "France is home to houses whose standing was built over generations: in Champagne, in wine, in luxury and in beauty. Their value lies in what cannot be hurried: terroir, craft and consistency.",
         "From Reims, we work directly with these houses. Our role is to carry that value intact into a new market.",
@@ -310,7 +299,7 @@ const en = {
     },
     india: {
       eyebrow: "India · The opportunity",
-      title: "A market at the start of its next chapter.",
+      title: "Where the opportunity is opening.",
       body: "India’s premium market is growing, and the India–EU Free Trade Agreement will sharply lower duties on European wine. The facts below are drawn from published sources, with dates.",
     },
     franceToIndia: {
@@ -388,8 +377,8 @@ const en = {
     metaDescription:
       "Perspectives from Ordine Ermetico on French houses, the Indian market and the India–EU Free Trade Agreement.",
     eyebrow: "Insights",
-    title: "Notes from the corridor.",
-    lede: "Considered perspectives on French houses and the Indian market. Published when there is something worth saying.",
+    title: "Writing on French houses and the Indian market.",
+    lede: "Short pieces on trade, distribution and positioning in India. We publish when we have something useful to add.",
     empty: "First insights in preparation.",
     upcomingTitle: "In preparation",
     upcoming: [

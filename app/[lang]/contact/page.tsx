@@ -31,7 +31,7 @@ export default async function ContactPage({ params }: LangParams) {
           <Reveal className="lg:col-span-4">
             <div className="lg:sticky lg:top-[calc(var(--header-h)+3rem)]">
               <p className="label text-oe-graphite">{c.direct}</p>
-              <a href={`mailto:${site.email}`} className="link-line mt-4 inline-block break-all font-display text-[1.7rem] text-oe-ink">
+              <a href={`mailto:${site.email}`} className="link-line mt-4 inline-block whitespace-nowrap font-display text-[clamp(1.3rem,5.4vw,1.7rem)] text-oe-ink">
                 {site.email}
               </a>
               <hr className="rule my-10" />
