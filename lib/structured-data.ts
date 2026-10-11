@@ -1,5 +1,5 @@
 import type { Dictionary } from "@/content";
-import { absoluteUrl, site } from "./site";
+import { absoluteUrl, site, socials } from "./site";
 import { localePath, type Locale } from "./i18n";
 
 export function organizationLd(t: Dictionary) {
@@ -14,7 +14,8 @@ export function organizationLd(t: Dictionary) {
     email: site.email,
     description: t.meta.siteDescription,
     // Add `address` and legal identifiers only after the SASU is registered (KB 9.6).
-    ...(site.sameAs.length ? { sameAs: site.sameAs } : {}),
+    founder: { "@type": "Person", name: "Chakravarthi Kundavarapu", jobTitle: "Founder", image: absoluteUrl("/founder/chakravarthi-kundavarapu.jpg") },
+    sameAs: socials.map((s) => s.url),
   };
 }
 

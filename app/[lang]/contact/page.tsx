@@ -8,6 +8,7 @@ import { ContactForm } from "@/components/ContactForm";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
+import { SocialLinks } from "@/components/SocialLinks";
 
 export async function generateMetadata({ params }: LangParams): Promise<Metadata> {
   const lang = await getLang(params);
@@ -36,6 +37,11 @@ export default async function ContactPage({ params }: LangParams) {
               <hr className="rule my-10" />
               <p className="label text-oe-graphite">{c.based}</p>
               <p className="mt-3 font-display text-[1.6rem] text-oe-ink">{c.basedValue}</p>
+              <hr className="rule my-10" />
+              <p className="label text-oe-graphite">{t.footer.follow}</p>
+              <div className="mt-5">
+                <SocialLinks label={t.footer.follow} tone="light" />
+              </div>
               <hr className="rule my-10" />
               <p className="max-w-xs text-[0.95rem] text-oe-graphite">{c.discretion}</p>
             </div>

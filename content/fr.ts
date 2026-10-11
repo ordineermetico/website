@@ -43,6 +43,7 @@ const fr: Dictionary = {
     privacy: "Politique de confidentialité",
     cookies: "Préférences cookies",
     rights: "Tous droits réservés.",
+    follow: "Suivre",
     backToTop: "Haut de page",
   },
 
@@ -284,18 +285,7 @@ const fr: Dictionary = {
       eyebrow: "Fondateur",
       name: "Chakravarthi Kundavarapu",
       role: "Fondateur",
-      bio: [
-        "Chakravarthi Kundavarapu a fondé Ordine Ermetico à Reims. Professionnel de la supply chain et des achats, il aborde chaque sujet par les opérations, avec l’appui de l’analyse de données.",
-        "Il est ingénieur en digitalisation de la supply chain chez un industriel aérospatial français à Reims, où il a conçu un référentiel d’indicateurs supply chain et des analyses de performance fournisseurs.",
-      ],
-      educationTitle: "Formation",
-      education: [
-        { school: "Rennes School of Business", detail: "MSc Logistics, Supply Chain and Purchasing" },
-        { school: "NEOMA Business School", detail: "Programme Grande École" },
-        { school: "RGUKT Basar", detail: "B.Tech en génie mécanique" },
-      ],
-      photoPlaceholder: "Photographie du fondateur",
-      linkedinPlaceholder: "Profil LinkedIn",
+      photoAlt: "Portrait de Chakravarthi Kundavarapu, fondateur d’Ordine Ermetico",
     },
     partners: {
       eyebrow: "Maisons partenaires",

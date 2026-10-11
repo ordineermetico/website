@@ -42,6 +42,7 @@ const en = {
     privacy: "Privacy Policy",
     cookies: "Cookie Preferences",
     rights: "All rights reserved.",
+    follow: "Follow",
     backToTop: "Back to top",
   },
 
@@ -283,18 +284,7 @@ const en = {
       eyebrow: "Founder",
       name: "Chakravarthi Kundavarapu",
       role: "Founder",
-      bio: [
-        "Chakravarthi Kundavarapu founded Ordine Ermetico in Reims. A supply-chain and procurement professional, he works from an operations-first perspective, with a layer of data analytics.",
-        "He is a Supply Chain Digitalization Engineer at a French aerospace manufacturer in Reims, where he built a supply-chain KPI framework and supplier-performance analytics.",
-      ],
-      educationTitle: "Education",
-      education: [
-        { school: "Rennes School of Business", detail: "MSc Logistics, Supply Chain and Purchasing" },
-        { school: "NEOMA Business School", detail: "Programme Grande École" },
-        { school: "RGUKT Basar", detail: "B.Tech Mechanical Engineering" },
-      ],
-      photoPlaceholder: "Founder photograph",
-      linkedinPlaceholder: "LinkedIn profile",
+      photoAlt: "Portrait of Chakravarthi Kundavarapu, Founder of Ordine Ermetico",
     },
     partners: {
       eyebrow: "Partner Houses",

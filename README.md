@@ -95,7 +95,9 @@ After the first production deploy:
 3. `npm run indexnow` to notify Bing and other IndexNow engines.
 4. Run the Rich Results Test on `/` and `/capabilities`.
 
-Off-site credibility (the founder's actions): LinkedIn company page with the same one-line description · the SASU's public registry entry · mentions or links from Duval-Leroy and Abelé 1757 · French and Indian trade-press coverage · real Insights articles over time. Once the LinkedIn page exists, add its URL to `site.sameAs` in `lib/site.ts`.
+Official profiles (username `ordineermetico` everywhere) are listed once in `lib/site.ts` → `socials`; they feed the footer, the Contact page and the `Organization` `sameAs`. Add any further network there.
+
+Off-site credibility (the founder's actions): keep the LinkedIn company page description identical to the website's · the SASU's public registry entry · mentions or links from Duval-Leroy and Abelé 1757 · French and Indian trade-press coverage · real Insights articles over time.
 
 ## Placeholders to supply before launch (KB Section 12)
 
@@ -113,7 +115,7 @@ Every one of these is shown on the site as a visible `[[TO BE CONFIRMED: …]]` 
 
 **Partner houses** — the exact role Ordine Ermetico holds with each, and whether it is exclusive and signed (until then the site never puts "exclusive" next to a house's name) · official logo files (the Duval-Leroy PNG is only 560×280) · approval of the two one-liners · website URLs.
 
-**People and brand** — founder photograph and LinkedIn URL (both shown as placeholders on The Firm) · founder's approval of the bio, including the description "a French aerospace manufacturer in Reims" (the employer is not named) · logo vector (SVG) · approved favicon / monogram · licensed photography (the site currently uses none) · native-speaker review of the French version.
+**People and brand** — logo vector (SVG) · approved favicon / monogram · licensed photography (the site currently uses none) · native-speaker review of the French version.
 
 **Market facts `[VERIFY]`** — every figure in `content/facts.ts` is taken from Knowledge Base Section 10 with its source and date. The sources could not be fetched from the build environment, so each must be re-checked before launch and `factsCheckedOn` updated.
 

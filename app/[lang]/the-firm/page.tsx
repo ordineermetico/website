@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { getDictionary } from "@/content";
 import { getLang, localePath, routes, type LangParams } from "@/lib/i18n";
@@ -10,7 +11,6 @@ import { CtaBand } from "@/components/CtaBand";
 import { Frame } from "@/components/Frame";
 import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
-import { Placeholder } from "@/components/Placeholder";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
 
@@ -114,38 +114,25 @@ export default async function FirmPage({ params }: LangParams) {
       </section>
 
       {/* Founder */}
-      <section className="section bg-oe-ivory">
-        <div className="container-oe grid gap-14 lg:grid-cols-12">
-          <Reveal className="lg:col-span-4">
-            <p className="eyebrow">{f.founder.eyebrow}</p>
-            <div className="mt-8 flex aspect-[4/5] w-full max-w-sm flex-col items-center justify-center gap-6 border border-oe-rule bg-oe-paper p-6 text-center">
-              <span aria-hidden="true" className="font-display text-7xl tracking-[0.12em] text-oe-gold">
-                CK
-              </span>
-              <Placeholder label={f.founder.photoPlaceholder} />
-            </div>
+      <section className="on-dark grain bg-oe-black text-oe-softwhite">
+        <div className="container-oe section grid items-center gap-14 md:grid-cols-12">
+          <Reveal className="md:col-span-5 lg:col-span-4 lg:col-start-2">
+            <Frame className="mx-auto max-w-sm p-3 sm:p-4">
+              <Image
+                src="/founder/chakravarthi-kundavarapu.jpg"
+                alt={f.founder.photoAlt}
+                width={960}
+                height={1200}
+                sizes="(min-width: 768px) 360px, 90vw"
+                className="relative h-auto w-full"
+              />
+            </Frame>
           </Reveal>
-          <Reveal delay={120} className="lg:col-span-7 lg:col-start-6">
-            <h2 className="display-md">{f.founder.name}</h2>
-            <p className="label mt-4 text-oe-bronze">{f.founder.role} · Reims</p>
-            <div className="mt-10 space-y-6 text-[1.08rem] leading-[1.75]">
-              {f.founder.bio.map((p) => (
-                <p key={p}>{p}</p>
-              ))}
-            </div>
-            <h3 className="label mt-14 text-oe-ink" style={{ fontFamily: "var(--font-label)" }}>
-              {f.founder.educationTitle}
-            </h3>
-            <ul className="mt-6 border-t border-oe-rule">
-              {f.founder.education.map((e) => (
-                <li key={e.school} className="flex flex-col justify-between gap-1 border-b border-oe-rule py-5 sm:flex-row sm:items-baseline sm:gap-6">
-                  <span className="font-display text-[1.4rem] text-oe-ink">{e.school}</span>
-                  <span className="text-[0.95rem] text-oe-graphite sm:text-right">{e.detail}</span>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-8">
-              <Placeholder label={f.founder.linkedinPlaceholder} />
+          <Reveal delay={150} className="text-center md:col-span-6 md:col-start-7 md:text-left">
+            <h2 className="display-lg">{f.founder.name}</h2>
+            <p className="label mt-7 inline-flex items-center gap-4 text-oe-gold">
+              <span aria-hidden="true" className="h-px w-8 bg-oe-gold/70" />
+              {f.founder.role} · Ordine Ermetico
             </p>
           </Reveal>
         </div>

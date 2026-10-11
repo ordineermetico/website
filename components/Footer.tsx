@@ -4,6 +4,7 @@ import { localePath, routes, type Locale } from "@/lib/i18n";
 import { site } from "@/lib/site";
 import type { Dictionary } from "@/content";
 import { Arrow } from "./Arrow";
+import { SocialLinks } from "./SocialLinks";
 
 export function Footer({ lang, t }: { lang: Locale; t: Dictionary }) {
   const year = new Date().getFullYear();
@@ -31,6 +32,9 @@ export function Footer({ lang, t }: { lang: Locale; t: Dictionary }) {
               sizes="240px"
             />
             <p className="mt-10 font-display text-3xl leading-tight text-oe-softwhite sm:text-4xl">{t.footer.statement}</p>
+            <div className="mt-10">
+              <SocialLinks label={t.footer.follow} />
+            </div>
           </div>
 
           <div className="grid gap-12 sm:grid-cols-3 lg:col-span-7">

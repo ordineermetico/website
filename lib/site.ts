@@ -5,9 +5,17 @@ export const site = {
   email: "office@ordineermetico.com",
   city: "Reims",
   country: "France",
-  /** Off-site profiles. Add the LinkedIn company page once it exists. */
-  sameAs: [] as string[],
 };
+
+/** Official Ordine Ermetico profiles. Username everywhere: ordineermetico. */
+export const socials = [
+  { id: "linkedin", label: "LinkedIn", url: "https://www.linkedin.com/company/ordineermetico" },
+  { id: "instagram", label: "Instagram", url: "https://www.instagram.com/ordineermetico" },
+  { id: "x", label: "X", url: "https://x.com/ordineermetico" },
+  { id: "youtube", label: "YouTube", url: "https://www.youtube.com/@ordineermetico" },
+] as const;
+
+export type SocialId = (typeof socials)[number]["id"];
 
 export function absoluteUrl(path: string = "/"): string {
   return `${site.url}${path === "/" ? "" : path}` || site.url;
