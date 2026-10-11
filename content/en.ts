@@ -34,9 +34,12 @@ const en = {
 
   footer: {
     statement: "French houses. Indian markets.",
-    base: "Ordine Ermetico · Reims, France",
+    base: "Reims, France",
     explore: "Explore",
     company: "Company",
+    contactTitle: "Contact",
+    contactCta: "Contact us",
+    emailUs: "Email us",
     write: "Write to us",
     legal: "Legal Notice",
     privacy: "Privacy Policy",

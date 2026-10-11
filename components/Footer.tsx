@@ -6,6 +6,17 @@ import type { Dictionary } from "@/content";
 import { Arrow } from "./Arrow";
 import { SocialLinks } from "./SocialLinks";
 
+function FooterColumn({ title, children, className = "" }: { title: string; children: React.ReactNode; className?: string }) {
+  return (
+    <div className={className}>
+      <h2 className="label mb-6 text-oe-gold" style={{ fontFamily: "var(--font-label)" }}>
+        {title}
+      </h2>
+      {children}
+    </div>
+  );
+}
+
 export function Footer({ lang, t }: { lang: Locale; t: Dictionary }) {
   const year = new Date().getFullYear();
   const explore = (["firm", "capabilities", "markets", "approach", "insights", "contact"] as const).map((k) => ({
@@ -37,34 +48,19 @@ export function Footer({ lang, t }: { lang: Locale; t: Dictionary }) {
             </div>
           </div>
 
-          <div className="grid gap-12 sm:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] sm:gap-x-12 lg:col-span-8">
-            <div>
-              <h2 className="label mb-6 text-oe-gold" style={{ fontFamily: "var(--font-label)" }}>
-                {t.footer.explore}
-              </h2>
+          <div className="grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 sm:gap-x-10 lg:col-span-8 lg:col-start-5">
+            <FooterColumn title={t.footer.explore}>
               <ul className="space-y-3.5">
                 {explore.map((l) => (
                   <li key={l.href}>
-                    <Link href={l.href} className="link-line whitespace-nowrap text-[0.95rem] text-oe-softwhite/80 hover:text-oe-softwhite">
+                    <Link href={l.href} className="link-line text-[0.95rem] text-oe-softwhite/80 hover:text-oe-softwhite">
                       {l.label}
                     </Link>
                   </li>
                 ))}
               </ul>
-            </div>
-            <div>
-              <h2 className="label mb-6 text-oe-gold" style={{ fontFamily: "var(--font-label)" }}>
-                {t.footer.write}
-              </h2>
-              <a href={`mailto:${site.email}`} className="link-line whitespace-nowrap text-[0.95rem] text-oe-softwhite/90 hover:text-oe-softwhite">
-                {site.email}
-              </a>
-              <p className="mt-6 text-[0.95rem] text-oe-muted-dark">{t.footer.base}</p>
-            </div>
-            <div>
-              <h2 className="label mb-6 text-oe-gold" style={{ fontFamily: "var(--font-label)" }}>
-                {t.footer.company}
-              </h2>
+            </FooterColumn>
+            <FooterColumn title={t.footer.company}>
               <ul className="space-y-3.5">
                 {legal.map((l) => (
                   <li key={l.href}>
@@ -74,7 +70,16 @@ export function Footer({ lang, t }: { lang: Locale; t: Dictionary }) {
                   </li>
                 ))}
               </ul>
-            </div>
+            </FooterColumn>
+            <FooterColumn title={t.footer.contactTitle} className="col-span-2 sm:col-span-1">
+              <p className="text-[0.95rem] text-oe-softwhite/80">{t.footer.base}</p>
+              <Link href={localePath(lang, routes.contact)} className="btn btn-ghost mt-7 min-h-11! px-5! py-3! tracking-[0.16em]!">
+                {t.footer.contactCta}
+              </Link>
+              <a href={`mailto:${site.email}`} className="link-line mt-5 block w-fit text-[0.95rem] text-oe-softwhite/80 hover:text-oe-softwhite">
+                {t.footer.emailUs}
+              </a>
+            </FooterColumn>
           </div>
         </div>
 

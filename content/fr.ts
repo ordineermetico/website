@@ -35,9 +35,12 @@ const fr: Dictionary = {
 
   footer: {
     statement: "Maisons françaises. Marchés indiens.",
-    base: "Ordine Ermetico · Reims, France",
+    base: "Reims, France",
     explore: "Découvrir",
     company: "Société",
+    contactTitle: "Contact",
+    contactCta: "Nous contacter",
+    emailUs: "Nous écrire",
     write: "Nous écrire",
     legal: "Mentions légales",
     privacy: "Politique de confidentialité",
