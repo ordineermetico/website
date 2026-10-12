@@ -6,7 +6,7 @@ import type { Dictionary } from "./en";
  */
 const fr: Dictionary = {
   meta: {
-    siteTitle: "Ordine Ermetico — Maisons françaises. Marchés indiens.",
+    siteTitle: "Ordine Ermetico · Au-delà du visible, au sein de l’ordre",
     titleTemplate: "%s · Ordine Ermetico",
     descriptor: "Maison française d’importation et de distribution pour l’Inde",
     siteDescription:
@@ -64,7 +64,7 @@ const fr: Dictionary = {
   },
 
   home: {
-    metaTitle: "Ordine Ermetico — Maisons françaises. Marchés indiens.",
+    metaTitle: "Ordine Ermetico · Au-delà du visible, au sein de l’ordre",
     metaDescription:
       "Une société française, basée à Reims, qui accompagne en Inde des maisons de Champagne, de vin, de luxe et de beauté en tant qu’importateur et distributeur exclusif, et ouvre l’Europe à une sélection de marques indiennes.",
     hero: {

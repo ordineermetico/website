@@ -27,7 +27,7 @@ export function SocialLinks({ label, tone = "dark" }: { label: string; tone?: "d
             href={s.url}
             target="_blank"
             rel="me noopener noreferrer"
-            aria-label={`Ordine Ermetico — ${s.label}`}
+            aria-label={`Ordine Ermetico on ${s.label}`}
             className={`grid size-11 place-items-center rounded-full border transition-colors duration-500 ${color}`}
           >
             <svg aria-hidden="true" viewBox="0 0 24 24" className="size-[15px] fill-current">

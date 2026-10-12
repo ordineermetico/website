@@ -56,7 +56,7 @@ export function ContactForm({
       "",
       d.message,
     ].join("\n");
-    return `mailto:${site.email}?subject=${encodeURIComponent(`${t.emailSubject} — ${d.organisation}`)}&body=${encodeURIComponent(body)}`;
+    return `mailto:${site.email}?subject=${encodeURIComponent(`${t.emailSubject}: ${d.organisation}`)}&body=${encodeURIComponent(body)}`;
   };
 
   const focusFirstError = (errs: FieldKey[]) => {

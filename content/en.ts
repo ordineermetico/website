@@ -5,7 +5,7 @@
  */
 const en = {
   meta: {
-    siteTitle: "Ordine Ermetico — French houses. Indian markets.",
+    siteTitle: "Ordine Ermetico · Beyond the visible, within the order",
     titleTemplate: "%s · Ordine Ermetico",
     descriptor: "French import and distribution house for India",
     siteDescription:
@@ -63,7 +63,7 @@ const en = {
   },
 
   home: {
-    metaTitle: "Ordine Ermetico — French houses. Indian markets.",
+    metaTitle: "Ordine Ermetico · Beyond the visible, within the order",
     metaDescription:
       "A French company from Reims that brings French houses of Champagne, wine, luxury and beauty to India as their exclusive importer and distributor, and opens Europe to selected Indian brands.",
     hero: {

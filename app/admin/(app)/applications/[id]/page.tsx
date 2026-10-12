@@ -22,9 +22,9 @@ export default async function ApplicationDetail({ params }: { params: Promise<{ 
   const rows: [string, React.ReactNode][] = [
     ["Position", a.job_id ? <Link className="underline decoration-oe-gold underline-offset-4" href={`/admin/jobs/${a.job_id}`}>{a.job_title}</Link> : a.job_title],
     ["Email", <a key="e" className="underline decoration-oe-gold underline-offset-4" href={`mailto:${a.email}`}>{a.email}</a>],
-    ["Phone", a.phone || "—"],
-    ["Based in", a.location || "—"],
-    ["LinkedIn", a.linkedin_url ? <a key="l" className="break-all underline decoration-oe-gold underline-offset-4" href={a.linkedin_url} target="_blank" rel="noopener noreferrer">{a.linkedin_url}</a> : "—"],
+    ["Phone", a.phone || "Not given"],
+    ["Based in", a.location || "Not given"],
+    ["LinkedIn", a.linkedin_url ? <a key="l" className="break-all underline decoration-oe-gold underline-offset-4" href={a.linkedin_url} target="_blank" rel="noopener noreferrer">{a.linkedin_url}</a> : "Not given"],
     ["Applied in", a.language === "fr" ? "French" : "English"],
     ["Received", formatAdminDateTime(a.created_at)],
     ["Deleted automatically on", formatAdminDate(a.delete_after)],

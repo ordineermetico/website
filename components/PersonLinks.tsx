@@ -17,7 +17,7 @@ export function PersonLinks({ person, tone = "dark" }: { person: Person; tone?: 
             <a
               href={href}
               {...(k === "email" ? {} : { target: "_blank", rel: "noopener noreferrer" })}
-              aria-label={`${person.name} — ${labels[k]}`}
+              aria-label={`${person.name}: ${labels[k]}`}
               className={`grid size-10 place-items-center rounded-full border transition-colors duration-500 ${color}`}
             >
               <svg aria-hidden="true" viewBox="0 0 24 24" className="size-[14px] fill-current">

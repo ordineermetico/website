@@ -140,7 +140,7 @@ export default async function Home({ params }: LangParams) {
               <Reveal key={d.title} delay={i * 150} className="bg-oe-ivory p-9 sm:p-12">
                 <div className="flex items-center justify-between gap-4">
                   <p className="label text-oe-bronze">
-                    {d.from} <span aria-hidden="true">—</span> {d.to}
+                    {d.from} <span aria-hidden="true">→</span> {d.to}
                   </p>
                   <p className="label text-oe-graphite">{d.label}</p>
                 </div>

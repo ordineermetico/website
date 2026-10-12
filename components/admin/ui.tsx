@@ -88,12 +88,12 @@ export function EmptyState({ children }: { children: ReactNode }) {
 }
 
 export const formatAdminDate = (iso: string | null | undefined) =>
-  iso ? new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "Europe/Paris" }).format(new Date(iso)) : "—";
+  iso ? new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "Europe/Paris" }).format(new Date(iso)) : "Not set";
 
 export const formatAdminDateTime = (iso: string | null | undefined) =>
   iso
     ? new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit", timeZone: "Europe/Paris" }).format(new Date(iso))
-    : "—";
+    : "Not set";
 
 export const FORMAT_HELP = (
   <>

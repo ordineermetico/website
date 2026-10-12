@@ -35,8 +35,8 @@ app/
   sitemap.ts robots.ts manifest.ts favicon.ico icon.png apple-icon.png
 components/               layout, sections and UI (server components unless marked "use client")
 content/
-  en.ts                   English copy (British English) — defines the shape
-  fr.ts                   French copy — must match en.ts exactly (TypeScript enforces this)
+  en.ts                   English copy (British English): defines the shape
+  fr.ts                   French copy: must match en.ts exactly (TypeScript enforces this)
   facts.ts                market figures with sources and dates [VERIFY]
 lib/                      i18n, SEO metadata, structured data, fonts, form validation
 proxy.ts                  serves English at "/" and French at "/fr"
@@ -57,14 +57,14 @@ scripts/indexnow.mjs      ping IndexNow after a production deploy
 | `oe-paper` | `#F5EFE3` | alternate warm surface |
 | `oe-black` | `#111111` | hero, footer, one feature band per page |
 | `oe-ink` | `#1E1A16` | text on ivory |
-| `oe-gold` | `#B79A62` | hairlines, numerals, focus rings, accents — never small text on ivory |
+| `oe-gold` | `#B79A62` | hairlines, numerals, focus rings, accents, never small text on ivory |
 | `oe-bronze` | `#7E5A1E` | gold-family small text on ivory (passes AA) |
 | `oe-graphite` | `#6E665C` | secondary text |
 | `oe-rule` | `#D3C6AE` | hairlines |
 | `oe-softwhite` | `#F3EDE2` | text on black |
 
-- **Type scale:** `display-xl` (hero), `display-lg`, `display-md`, `display-sm`, `lede`, `label`, `eyebrow` — see `app/globals.css`.
-- **Signature frame:** `<Frame>` — a fine double hairline with small concave corners. Used on the hero emblem, the FTA figure, the structure diagram, the founder portrait, the exclusive-agreement note and the closing call to action only.
+- **Type scale:** `display-xl` (hero), `display-lg`, `display-md`, `display-sm`, `lede`, `label`, `eyebrow`; see `app/globals.css`.
+- **Signature frame:** `<Frame>`: a fine double hairline with small concave corners. Used on the hero emblem, the FTA figure, the structure diagram, the founder portrait, the exclusive-agreement note and the closing call to action only.
 - **Section kickers** (`.eyebrow`) are a small italic line in the display face, not uppercase labels; uppercase Tenor Sans is kept for navigation, buttons and metadata.
 - **Paper grain:** `.grain`, 3.5% opacity, inline SVG noise (no image request).
 - **Motion:** fades and short rises on scroll (`<Reveal>` + one shared `IntersectionObserver`), a slow emblem fade-in, and the corridor lines drawing themselves. Everything is disabled under `prefers-reduced-motion`, and content is never hidden when JavaScript is unavailable.
@@ -82,7 +82,7 @@ Fields, validation and wording follow Knowledge Base 9.3. Resend is set up for `
 
 | Variable | Purpose |
 |---|---|
-| `RESEND_API_KEY` | Resend API key. Vercel environment variables only — never commit it |
+| `RESEND_API_KEY` | Resend API key. Vercel environment variables only, never commit it |
 | `RESEND_FROM` | Sender on a domain verified in Resend. Default `Ordine Ermetico <website@ordineermetico.com>` |
 | `CONTACT_TO` | Recipient. Default `office@ordineermetico.com` |
 | `NEXT_PUBLIC_SITE_URL` | Canonical origin. Default `https://ordineermetico.com` |
@@ -158,21 +158,21 @@ Off-site credibility (the founder's actions): keep the LinkedIn company page des
 
 Every one of these is shown on the site as a visible `[[TO BE CONFIRMED: …]]` marker or is listed here because it cannot be shown.
 
-**Ordine Ermetico SASU** (Legal Notice) — exact registered name · share capital · registered address (Reims) · RCS Reims number · SIREN and SIRET · EU VAT number · director of publication. When registered, also add `address` to the `Organization` JSON-LD (`lib/structured-data.ts`) and the "Our structure" sentence with the Indian company's name on The Firm page.
+**Ordine Ermetico SASU** (Legal Notice: exact registered name · share capital · registered address (Reims) · RCS Reims number · SIREN and SIRET · EU VAT number · director of publication. When registered, also add `address` to the `Organization` JSON-LD (`lib/structured-data.ts`) and the "Our structure" sentence with the Indian company's name on The Firm page.
 
-**Hosting** — Vercel Inc.'s current postal address for the Legal Notice.
+**Hosting:** Vercel Inc.'s current postal address for the Legal Notice.
 
-**Indian subsidiary** — final name, CIN, registered office (currently described only as "our Indian company, being established").
+**Indian subsidiary:** final name, CIN, registered office (currently described only as "our Indian company, being established").
 
-**Privacy** — data-controller details and privacy contact · retention period · legal review of the draft privacy text (the page is marked as a draft) · cookie inventory (currently none).
+**Privacy:** data-controller details and privacy contact · retention period · legal review of the draft privacy text (the page is marked as a draft) · cookie inventory (currently none).
 
-**Mailboxes** — confirm `office@ordineermetico.com` receives mail.
+**Mailboxes:** confirm `office@ordineermetico.com` receives mail.
 
-**Partner houses** — the exact role Ordine Ermetico holds with each, and whether it is exclusive and signed (until then the site never puts "exclusive" next to a house's name) · official logo files (the Duval-Leroy PNG is only 560×280) · approval of the two one-liners · website URLs.
+**Partner houses:** the exact role Ordine Ermetico holds with each, and whether it is exclusive and signed (until then the site never puts "exclusive" next to a house's name) · official logo files (the Duval-Leroy PNG is only 560×280) · approval of the two one-liners · website URLs.
 
-**People and brand** — logo vector (SVG) · licensed photography (the site currently uses none) · native-speaker review of the French version.
+**People and brand:** logo vector (SVG) · licensed photography (the site currently uses none) · native-speaker review of the French version.
 
-**Market facts `[VERIFY]`** — every figure in `content/facts.ts` is taken from Knowledge Base Section 10 with its source and date. The sources could not be fetched from the build environment, so each must be re-checked before launch and `factsCheckedOn` updated.
+**Market facts `[VERIFY]`:** every figure in `content/facts.ts` is taken from Knowledge Base Section 10 with its source and date. The sources could not be fetched from the build environment, so each must be re-checked before launch and `factsCheckedOn` updated.
 
 ## Working method
 

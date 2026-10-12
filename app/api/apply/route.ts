@@ -106,7 +106,7 @@ export async function POST(request: Request) {
   await sendEmail({
     to: process.env.HR_NOTIFY_TO || site.email,
     replyTo: email,
-    subject: `Application: ${job.title_en} — ${fullName}`,
+    subject: `Application: ${job.title_en}, ${fullName}`,
     text: `New application for ${job.title_en}\n\nName: ${fullName}\nEmail: ${email}\n${location ? `Based in: ${location}\n` : ""}\nReview it (sign-in required): ${reviewUrl}\n`,
     html: emailLayout(
       "New application",

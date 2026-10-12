@@ -26,7 +26,7 @@ export function CorridorDiagram({
       <p className="label text-center" style={{ color: muted }}>
         {topLabel}
       </p>
-      <svg viewBox="0 30 640 220" className="h-auto w-full overflow-visible" role="img" aria-label={`${left} — ${right}: ${topLabel}; ${bottomLabel}`}>
+      <svg viewBox="0 30 640 220" className="h-auto w-full overflow-visible" role="img" aria-label={`${left} to ${right}: ${topLabel}; ${bottomLabel}`}>
         <line x1={L} y1={Y} x2={R} y2={Y} stroke={gold} strokeOpacity="0.3" strokeWidth="1" strokeDasharray="1 7" strokeLinecap="round" />
         <path
           className="draw-path"
