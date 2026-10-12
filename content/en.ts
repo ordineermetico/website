@@ -274,11 +274,10 @@ const en = {
       },
       link: "Majority-owned subsidiary",
     },
-    founder: {
-      eyebrow: "Founder",
-      name: "Chakravarthi Kundavarapu",
-      role: "Founder",
-      photoAlt: "Portrait of Chakravarthi Kundavarapu, Founder of Ordine Ermetico",
+    people: {
+      eyebrow: "The team",
+      title: "The people behind Ordine Ermetico.",
+      more: "Meet the full team",
     },
     partners: {
       eyebrow: "Partner Houses",
@@ -448,6 +447,15 @@ const en = {
         summary: "Please correct the highlighted fields.",
       },
     },
+  },
+
+  team: {
+    metaTitle: "Team",
+    metaDescription: "The people of Ordine Ermetico, a French company in Reims bringing French houses to India.",
+    eyebrow: "The team",
+    title: "The people behind Ordine Ermetico.",
+    lede: "Based in Reims and working between France and India.",
+    back: "The Firm",
   },
 
   press: {

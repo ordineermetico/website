@@ -4,7 +4,7 @@ import { EmptyState, PageHeader, formatAdminDateTime } from "@/components/admin/
 
 export const metadata = { title: "Activity" };
 
-const tableLabels: Record<string, string> = { posts: "News", partners: "Partner house", jobs: "Job", applications: "Application", profiles: "Team member" };
+const tableLabels: Record<string, string> = { posts: "News", partners: "Partner house", people: "Profile", jobs: "Job", applications: "Application", profiles: "Team member" };
 const actionLabels: Record<string, string> = { INSERT: "created", UPDATE: "updated", DELETE: "deleted" };
 
 export default async function ActivityPage() {

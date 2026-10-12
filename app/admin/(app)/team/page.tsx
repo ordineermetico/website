@@ -8,7 +8,7 @@ export const metadata = { title: "Team" };
 
 const roleHelp: Record<StaffRole, string> = {
   admin: "Everything, including team accounts and the activity log.",
-  communications: "News, press releases, announcements, milestones and partner houses.",
+  communications: "News, press releases, announcements, milestones, partner houses and team profiles.",
   hr: "Jobs and applications, including CVs.",
 };
 

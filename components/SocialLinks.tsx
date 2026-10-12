@@ -1,6 +1,6 @@
 import { socials, type SocialId } from "@/lib/site";
 
-const paths: Record<SocialId, string> = {
+export const iconPaths: Record<SocialId | "website" | "email", string> = {
   linkedin:
     "M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.22 8h4.56v14H.22V8zm7.4 0h4.37v1.92h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 7v7.44h-4.56v-6.6c0-1.57-.03-3.6-2.2-3.6-2.2 0-2.53 1.72-2.53 3.49V22H7.62V8z",
   instagram:
@@ -8,6 +8,9 @@ const paths: Record<SocialId, string> = {
   x: "M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.4l-5.8-7.58-6.64 7.58H.48l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93zm-1.29 19.5h2.04L6.48 3.24H4.3l13.31 17.41z",
   youtube:
     "M23.5 6.2a3.02 3.02 0 00-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 00.5 6.2 31.6 31.6 0 000 12a31.6 31.6 0 00.5 5.8 3.02 3.02 0 002.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 002.12-2.14A31.6 31.6 0 0024 12a31.6 31.6 0 00-.5-5.8zM9.55 15.57V8.43L15.82 12l-6.27 3.57z",
+  website:
+    "M12 0a12 12 0 100 24 12 12 0 000-24zm7.9 7h-3.4a18.6 18.6 0 00-1.6-4.6A10 10 0 0119.9 7zM12 2c.9 1.2 1.9 3 2.4 5H9.6C10.1 5 11.1 3.2 12 2zM2.3 14a9.9 9.9 0 010-4h3.9a20 20 0 000 4H2.3zm.8 2h3.4c.4 1.7.9 3.2 1.6 4.6A10 10 0 013.1 16zm3.4-9H3.1A10 10 0 018.1 2.4 18.6 18.6 0 006.5 7zM12 22c-.9-1.2-1.9-3-2.4-5h4.8c-.5 2-1.5 3.8-2.4 5zm2.8-7H9.2a18 18 0 010-4h5.6a18 18 0 010 4zm.1 5.6c.7-1.4 1.2-2.9 1.6-4.6h3.4a10 10 0 01-5 4.6zm1.9-6.6a20 20 0 000-4h3.9a9.9 9.9 0 010 4h-3.9z",
+  email: "M0 4v16h24V4H0zm21.6 2L12 12.6 2.4 6h19.2zM2 18V7.9l10 6.9 10-6.9V18H2z",
 };
 
 /** Official Ordine Ermetico profiles as quiet icon links. */
@@ -28,7 +31,7 @@ export function SocialLinks({ label, tone = "dark" }: { label: string; tone?: "d
             className={`grid size-11 place-items-center rounded-full border transition-colors duration-500 ${color}`}
           >
             <svg aria-hidden="true" viewBox="0 0 24 24" className="size-[15px] fill-current">
-              <path d={paths[s.id]} />
+              <path d={iconPaths[s.id]} />
             </svg>
           </a>
         </li>

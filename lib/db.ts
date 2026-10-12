@@ -205,3 +205,57 @@ export function joinNames(names: string[], lang: Locale): string {
   if (names.length <= 1) return names[0] ?? "";
   return `${names.slice(0, -1).join(", ")}${and}${names[names.length - 1]}`;
 }
+
+// ── People (public team profiles) ────────────────────────────────────────
+export type Person = {
+  slug: string;
+  name: string;
+  role: string;
+  bio: string | null;
+  photoUrl: string | null;
+  location: string | null;
+  links: { linkedin?: string; x?: string; instagram?: string; website?: string; email?: string };
+};
+
+const fallbackPeople = (lang: Locale): Person[] => [
+  {
+    slug: "chakravarthi-kundavarapu",
+    name: "Chakravarthi Kundavarapu",
+    role: lang === "fr" ? "Fondateur" : "Founder",
+    bio: null,
+    photoUrl: "/founder/chakravarthi-kundavarapu.jpg",
+    location: "Reims, France",
+    links: {},
+  },
+];
+
+/** Published profiles in display order. The Firm shows the first four; the Team page shows all. */
+export async function getPeople(lang: Locale): Promise<Person[]> {
+  const db = publicClient();
+  if (!db) return fallbackPeople(lang);
+  const { data, error } = await db
+    .from("people")
+    .select("slug,name,role_en,role_fr,bio_en,bio_fr,photo_url,location,linkedin_url,x_url,instagram_url,website_url,public_email")
+    .eq("status", "published")
+    .order("sort_order", { ascending: true })
+    .order("name", { ascending: true });
+  if (error || !data) {
+    console.error("people: falling back to built-in content", error?.message);
+    return fallbackPeople(lang);
+  }
+  return data.map((p) => ({
+    slug: p.slug,
+    name: p.name,
+    role: pick(lang, p.role_en, p.role_fr) ?? p.role_en,
+    bio: pick(lang, p.bio_en, p.bio_fr),
+    photoUrl: p.photo_url,
+    location: p.location,
+    links: {
+      ...(p.linkedin_url ? { linkedin: p.linkedin_url } : {}),
+      ...(p.x_url ? { x: p.x_url } : {}),
+      ...(p.instagram_url ? { instagram: p.instagram_url } : {}),
+      ...(p.website_url ? { website: p.website_url } : {}),
+      ...(p.public_email ? { email: p.public_email } : {}),
+    },
+  }));
+}

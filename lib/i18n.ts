@@ -16,6 +16,7 @@ export const routes = {
   news: "/news",
   careers: "/careers",
   press: "/press",
+  team: "/team",
   contact: "/contact",
   legal: "/legal-notice",
   privacy: "/privacy",

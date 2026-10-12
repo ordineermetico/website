@@ -4,7 +4,10 @@ import Link from "next/link";
 import { getDictionary } from "@/content";
 import { getLang, localePath, routes, type LangParams } from "@/lib/i18n";
 import { pageMetadata } from "@/lib/seo";
-import { getPartners, joinNames } from "@/lib/db";
+import { getPartners, getPeople, joinNames } from "@/lib/db";
+import { renderMarkdown } from "@/lib/markdown";
+import { PeopleTiles } from "@/components/PeopleTiles";
+import { PersonLinks } from "@/components/PersonLinks";
 import { breadcrumbLd } from "@/lib/structured-data";
 import { Arrow } from "@/components/Arrow";
 import { CorridorDiagram } from "@/components/CorridorDiagram";
@@ -13,6 +16,9 @@ import { JsonLd } from "@/components/JsonLd";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/SectionHeading";
+
+/** How many profiles The Firm shows before linking to the full Team page. */
+const TILES = 4;
 
 export const revalidate = 300;
 
@@ -26,7 +32,8 @@ export default async function FirmPage({ params }: LangParams) {
   const lang = await getLang(params);
   const t = getDictionary(lang);
   const f = t.firm;
-  const houses = joinNames((await getPartners(lang)).map((p) => p.name), lang);
+  const [partners, people] = await Promise.all([getPartners(lang), getPeople(lang)]);
+  const houses = joinNames(partners.map((p) => p.name), lang);
 
   return (
     <>
@@ -96,29 +103,55 @@ export default async function FirmPage({ params }: LangParams) {
         </div>
       </section>
 
-      {/* Founder */}
+      {/* People: one profile is shown large; two or more as tiles (max 4 here, the rest on the Team page) */}
       <section className="on-dark grain bg-oe-black text-oe-softwhite">
-        <div className="container-oe section grid items-center gap-14 md:grid-cols-12">
-          <Reveal className="md:col-span-5 lg:col-span-4 lg:col-start-2">
-            <Frame className="mx-auto max-w-sm p-3 sm:p-4">
-              <Image
-                src="/founder/chakravarthi-kundavarapu.jpg"
-                alt={f.founder.photoAlt}
-                width={960}
-                height={1200}
-                sizes="(min-width: 768px) 360px, 90vw"
-                className="relative h-auto w-full"
-              />
-            </Frame>
-          </Reveal>
-          <Reveal delay={150} className="text-center md:col-span-6 md:col-start-7 md:text-left">
-            <h2 className="display-lg">{f.founder.name}</h2>
-            <p className="label mt-7 inline-flex items-center gap-4 text-oe-gold">
-              <span aria-hidden="true" className="h-px w-8 bg-oe-gold/70" />
-              {f.founder.role} · Ordine Ermetico
-            </p>
-          </Reveal>
-        </div>
+        {people.length === 1 ? (
+          <div className="container-oe section grid items-center gap-14 md:grid-cols-12">
+            <Reveal className="md:col-span-5 lg:col-span-4 lg:col-start-2">
+              <Frame className="mx-auto max-w-sm p-3 sm:p-4">
+                {people[0].photoUrl ? (
+                  <Image src={people[0].photoUrl} alt={people[0].name} width={960} height={1200} sizes="(min-width: 768px) 360px, 90vw" className="relative aspect-[4/5] h-auto w-full object-cover" />
+                ) : null}
+              </Frame>
+            </Reveal>
+            <Reveal delay={150} className="text-center md:col-span-6 md:col-start-7 md:text-left">
+              <h2 className="display-lg">{people[0].name}</h2>
+              <p className="label mt-7 inline-flex items-center gap-4 text-oe-gold">
+                <span aria-hidden="true" className="h-px w-8 bg-oe-gold/70" />
+                {people[0].role} · Ordine Ermetico
+              </p>
+              {people[0].bio ? (
+                <div className="prose-oe mx-auto mt-8 max-w-xl text-left text-oe-muted-dark! md:mx-0 [&_a]:text-oe-softwhite" dangerouslySetInnerHTML={{ __html: renderMarkdown(people[0].bio) }} />
+              ) : null}
+              <div className="mt-8 flex justify-center md:justify-start">
+                <PersonLinks person={people[0]} />
+              </div>
+            </Reveal>
+          </div>
+        ) : people.length > 1 ? (
+          <div className="container-oe section">
+            <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+              <SectionHeading eyebrow={f.people.eyebrow} title={f.people.title} />
+              {people.length > TILES ? (
+                <Reveal>
+                  <Link href={localePath(lang, routes.team)} className="link-arrow whitespace-nowrap">
+                    {f.people.more} <Arrow />
+                  </Link>
+                </Reveal>
+              ) : null}
+            </div>
+            <div className="mt-16">
+              <PeopleTiles people={people.slice(0, TILES)} />
+            </div>
+            {people.length > TILES ? (
+              <div className="mt-16 flex justify-center">
+                <Link href={localePath(lang, routes.team)} className="btn btn-ghost">
+                  {f.people.more} <Arrow />
+                </Link>
+              </div>
+            ) : null}
+          </div>
+        ) : null}
       </section>
 
       {houses ? (

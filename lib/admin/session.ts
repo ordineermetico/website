@@ -18,6 +18,7 @@ export type Staff = {
 export const sectionAccess = {
   news: ["admin", "communications"],
   partners: ["admin", "communications"],
+  people: ["admin", "communications"],
   jobs: ["admin", "hr"],
   applications: ["admin", "hr"],
   team: ["admin"],

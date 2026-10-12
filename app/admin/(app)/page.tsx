@@ -6,15 +6,16 @@ import { PageHeader, Panel, formatAdminDateTime } from "@/components/admin/ui";
 
 export const metadata = { title: "Dashboard" };
 
-const cards: { section: Section; href: string; title: string; text: string; table: "posts" | "partners" | "jobs" | "applications" | "profiles"; filter?: [string, string] }[] = [
+const cards: { section: Section; href: string; title: string; text: string; table: "posts" | "partners" | "people" | "jobs" | "applications" | "profiles"; filter?: [string, string] }[] = [
   { section: "news", href: "/admin/news", title: "News", text: "Announcements, press releases, milestones and articles.", table: "posts" },
   { section: "partners", href: "/admin/partners", title: "Partner houses", text: "The houses shown on Home, Markets and The Firm.", table: "partners", filter: ["status", "published"] },
+  { section: "people", href: "/admin/people", title: "People", text: "Team profiles on The Firm and the Team page.", table: "people", filter: ["status", "published"] },
   { section: "jobs", href: "/admin/jobs", title: "Jobs", text: "Positions on the Careers page.", table: "jobs", filter: ["status", "open"] },
   { section: "applications", href: "/admin/applications", title: "Applications", text: "Candidates and their CVs.", table: "applications", filter: ["status", "new"] },
   { section: "team", href: "/admin/team", title: "Team", text: "Who can sign in, and with which role.", table: "profiles" },
 ];
 
-const countLabel: Record<string, string> = { posts: "items", partners: "published", jobs: "open", applications: "new", profiles: "accounts" };
+const countLabel: Record<string, string> = { posts: "items", partners: "published", people: "shown", jobs: "open", applications: "new", profiles: "accounts" };
 
 export default async function Dashboard({ searchParams }: { searchParams: Promise<{ denied?: string; twostep?: string }> }) {
   const { denied, twostep } = await searchParams;

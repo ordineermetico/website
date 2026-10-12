@@ -9,6 +9,7 @@ const items: { href: string; label: string; section?: Section }[] = [
   { href: "/admin", label: "Dashboard" },
   { href: "/admin/news", label: "News", section: "news" },
   { href: "/admin/partners", label: "Partner houses", section: "partners" },
+  { href: "/admin/people", label: "People", section: "people" },
   { href: "/admin/jobs", label: "Jobs", section: "jobs" },
   { href: "/admin/applications", label: "Applications", section: "applications" },
   { href: "/admin/team", label: "Team", section: "team" },

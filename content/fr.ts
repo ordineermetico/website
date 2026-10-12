@@ -275,11 +275,10 @@ const fr: Dictionary = {
       },
       link: "Filiale détenue majoritairement",
     },
-    founder: {
-      eyebrow: "Fondateur",
-      name: "Chakravarthi Kundavarapu",
-      role: "Fondateur",
-      photoAlt: "Portrait de Chakravarthi Kundavarapu, fondateur d’Ordine Ermetico",
+    people: {
+      eyebrow: "L’équipe",
+      title: "Les femmes et les hommes d’Ordine Ermetico.",
+      more: "Découvrir toute l’équipe",
     },
     partners: {
       eyebrow: "Maisons partenaires",
@@ -445,6 +444,15 @@ const fr: Dictionary = {
         summary: "Merci de corriger les champs signalés.",
       },
     },
+  },
+
+  team: {
+    metaTitle: "Équipe",
+    metaDescription: "L’équipe d’Ordine Ermetico, société française basée à Reims qui accompagne des maisons françaises en Inde.",
+    eyebrow: "L’équipe",
+    title: "Les femmes et les hommes d’Ordine Ermetico.",
+    lede: "Basés à Reims, entre la France et l’Inde.",
+    back: "La Maison",
   },
 
   press: {

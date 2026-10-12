@@ -95,6 +95,7 @@ Fields, validation and wording follow Knowledge Base 9.3. Resend is set up for `
 |---|---|---|
 | `posts` | News, press releases, announcements, milestones, insights (EN + FR) | Admin, Communications |
 | `partners` | Partner houses shown on Home, Markets, The Firm, the FAQ and `llms.txt` | Admin, Communications |
+| `people` | Public team profiles: The Firm shows the first four shown profiles (by order), the Team page (`/team`) shows all, with bios and links | Admin, Communications |
 | `jobs` | Positions on the Careers page | Admin, HR |
 | `applications` | Candidates; CVs sit in the private `cvs` storage bucket | Admin, HR (read/update); written only by the website server |
 | `profiles` | One row per staff account, with its role | Admin |
