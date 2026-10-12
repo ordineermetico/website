@@ -3,6 +3,8 @@ export const site = {
   shortName: "OE",
   url: (process.env.NEXT_PUBLIC_SITE_URL || "https://ordineermetico.com").replace(/\/$/, ""),
   email: "office@ordineermetico.com",
+  /** Where candidates send CVs and spontaneous applications. */
+  careersEmail: "join@ordineermetico.com",
   city: "Reims",
   country: "France",
 };

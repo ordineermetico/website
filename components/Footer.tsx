@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { localePath, routes, type Locale } from "@/lib/i18n";
-import { site } from "@/lib/site";
 import type { Dictionary } from "@/content";
 import { Arrow } from "./Arrow";
 import { SocialLinks } from "./SocialLinks";
@@ -74,13 +73,14 @@ export function Footer({ lang, t }: { lang: Locale; t: Dictionary }) {
               </ul>
             </FooterColumn>
             <FooterColumn title={t.footer.contactTitle} className="col-span-2 sm:col-span-1">
-              <p className="text-[0.95rem] text-oe-softwhite/80">{t.footer.base}</p>
-              <Link href={localePath(lang, routes.contact)} className="btn btn-ghost mt-7 min-h-11! px-5! py-3! tracking-[0.16em]!">
-                {t.footer.contactCta}
-              </Link>
-              <a href={`mailto:${site.email}`} className="link-line mt-5 block w-fit text-[0.95rem] text-oe-softwhite/80 hover:text-oe-softwhite">
-                {t.footer.emailUs}
-              </a>
+              <ul className="space-y-3.5">
+                <li className="text-[0.95rem] text-oe-softwhite/80">{t.footer.base}</li>
+                <li>
+                  <Link href={localePath(lang, routes.contact)} className="link-line text-[0.95rem] text-oe-softwhite/80 hover:text-oe-softwhite">
+                    {t.footer.contactCta}
+                  </Link>
+                </li>
+              </ul>
             </FooterColumn>
           </div>
         </div>

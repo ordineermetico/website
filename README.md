@@ -135,7 +135,7 @@ Local development against the remote project from a sandbox that needs an HTTP p
 | office@ordineermetico.com | Alias of communications@ for now; becomes its own mailbox when a Zoho licence is free | Contact-form enquiries (`CONTACT_TO`); shown publicly on the site |
 | it@ordineermetico.com | Site Admin | Sign-off requests (`ADMIN_NOTIFY_TO`) |
 | communications@ordineermetico.com | Communications | Approval / changes-requested notes on their news items |
-| join@ordineermetico.com | HR | Job-application alerts (`HR_NOTIFY_TO`) |
+| join@ordineermetico.com | HR | Job-application alerts (`HR_NOTIFY_TO`); shown on the Careers page for CVs sent by email (`site.careersEmail`) |
 
 When office@ becomes a dedicated mailbox, nothing changes on the website. All mail is sent by Resend from `website@ordineermetico.com`.
 

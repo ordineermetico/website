@@ -69,8 +69,8 @@ export default async function CareersPage({ params }: LangParams) {
               <p className="font-display text-[2rem] italic text-oe-bronze">{c.empty}</p>
               <p className="mt-5 max-w-xl text-oe-graphite">
                 {c.emptyBody}{" "}
-                <a href={`mailto:${site.email}?subject=${encodeURIComponent("Spontaneous application")}`} className="text-oe-ink underline decoration-oe-gold underline-offset-4">
-                  {site.email}
+                <a href={`mailto:${site.careersEmail}?subject=${encodeURIComponent("Spontaneous application")}`} className="text-oe-ink underline decoration-oe-gold underline-offset-4">
+                  {site.careersEmail}
                 </a>
                 .
               </p>

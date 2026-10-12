@@ -29,7 +29,7 @@ export function ApplyForm({
   const [fileName, setFileName] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
   const statusRef = useRef<HTMLDivElement>(null);
-  const mailto = `mailto:${site.email}?subject=${encodeURIComponent(`Application: ${jobTitle}`)}`;
+  const mailto = `mailto:${site.careersEmail}?subject=${encodeURIComponent(`Application: ${jobTitle}`)}`;
 
   const validate = (fd: FormData): Field[] => {
     const errs: Field[] = [];
@@ -208,7 +208,7 @@ export function ApplyForm({
             <p className="mt-3 text-oe-graphite">
               {t.fallbackBody}{" "}
               <a href={mailto} className="text-oe-ink underline decoration-oe-gold underline-offset-4">
-                {site.email}
+                {site.careersEmail}
               </a>
               .
             </p>
@@ -220,7 +220,7 @@ export function ApplyForm({
             <p className="mt-2 text-oe-graphite">
               {t.errorBody}{" "}
               <a href={mailto} className="text-oe-ink underline decoration-oe-gold underline-offset-4">
-                {site.email}
+                {site.careersEmail}
               </a>
               .
             </p>
