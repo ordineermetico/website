@@ -32,7 +32,7 @@ app/
     legal-notice/ privacy/ cookies/
     not-found.tsx         branded 404 · [...rest]/ sends unknown paths to it
   api/contact/route.ts    validation, honeypot, rate limit, Resend
-  sitemap.ts robots.ts manifest.ts icon.svg apple-icon.png
+  sitemap.ts robots.ts manifest.ts favicon.ico icon.png apple-icon.png
 components/               layout, sections and UI (server components unless marked "use client")
 content/
   en.ts                   English copy (British English) — defines the shape
@@ -69,7 +69,7 @@ scripts/indexnow.mjs      ping IndexNow after a production deploy
 - **Paper grain:** `.grain`, 3.5% opacity, inline SVG noise (no image request).
 - **Motion:** fades and short rises on scroll (`<Reveal>` + one shared `IntersectionObserver`), a slow emblem fade-in, and the corridor lines drawing themselves. Everything is disabled under `prefers-reduced-motion`, and content is never hidden when JavaScript is unavailable.
 - **Arrows** are drawn SVG (`<Arrow>`): Tenor Sans has no `→` glyph.
-- **Favicon:** a minimal "OE" monogram in a ring (`app/icon.svg`) because the emblem is illegible at 16–32 px. `[PROPOSED]` — replace when an approved monogram exists.
+- **Favicon:** the gold emblem on a black rounded square (`app/favicon.ico` 16–64 px, `app/icon.png` 512 px, `app/apple-icon.png` 180 px), generated from `public/brand/oe-emblem-gold-transparent.png`.
 
 ## Contact form
 
@@ -170,7 +170,7 @@ Every one of these is shown on the site as a visible `[[TO BE CONFIRMED: …]]` 
 
 **Partner houses** — the exact role Ordine Ermetico holds with each, and whether it is exclusive and signed (until then the site never puts "exclusive" next to a house's name) · official logo files (the Duval-Leroy PNG is only 560×280) · approval of the two one-liners · website URLs.
 
-**People and brand** — logo vector (SVG) · approved favicon / monogram · licensed photography (the site currently uses none) · native-speaker review of the French version.
+**People and brand** — logo vector (SVG) · licensed photography (the site currently uses none) · native-speaker review of the French version.
 
 **Market facts `[VERIFY]`** — every figure in `content/facts.ts` is taken from Knowledge Base Section 10 with its source and date. The sources could not be fetched from the build environment, so each must be re-checked before launch and `factsCheckedOn` updated.
 

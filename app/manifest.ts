@@ -10,8 +10,8 @@ export default function manifest(): MetadataRoute.Manifest {
     background_color: "#F4F0E8",
     theme_color: "#111111",
     icons: [
-      { src: "/icon.svg", type: "image/svg+xml", sizes: "any" },
-      { src: "/brand/oe-emblem-gold-512.png", type: "image/png", sizes: "512x512" },
+      { src: "/icon.png", type: "image/png", sizes: "512x512" },
+      { src: "/apple-icon.png", type: "image/png", sizes: "180x180" },
     ],
   };
 }
