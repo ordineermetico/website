@@ -128,6 +128,17 @@ Row-level security enforces every rule in the database itself, so a person with 
 
 Local development against the remote project from a sandbox that needs an HTTP proxy: `NODE_USE_ENV_PROXY=1 npm run dev`.
 
+## Mailboxes (Zoho)
+
+| Address | What it is | What the website sends there |
+|---|---|---|
+| office@ordineermetico.com | Alias of communications@ for now; becomes its own mailbox when a Zoho licence is free | Contact-form enquiries (`CONTACT_TO`); shown publicly on the site |
+| it@ordineermetico.com | Site Admin | Sign-off requests (`ADMIN_NOTIFY_TO`) |
+| communications@ordineermetico.com | Communications | Approval / changes-requested notes on their news items |
+| join@ordineermetico.com | HR | Job-application alerts (`HR_NOTIFY_TO`) |
+
+When office@ becomes a dedicated mailbox, nothing changes on the website. All mail is sent by Resend from `website@ordineermetico.com`.
+
 ## Search and AI-assistant visibility (KB 9.6)
 
 Done in code: server-rendered HTML for every page and language · `robots.txt` explicitly allowing Googlebot, Bingbot, OAI-SearchBot, ChatGPT-User, Claude-SearchBot, Claude-User, PerplexityBot and (by default, `[PROPOSED]`) the training crawlers GPTBot, ClaudeBot, Google-Extended, Applebot-Extended · `sitemap.xml` with `hreflang` · JSON-LD `Organization`, `WebSite`, `BreadcrumbList`, `Service` (×4) and `FAQPage` · unique titles and descriptions, canonical URLs, Open Graph and Twitter cards · manifest and icons · `llms.txt` · IndexNow key file.
